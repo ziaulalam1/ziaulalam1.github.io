@@ -23,28 +23,26 @@
     }
     .subtitle {
       color: #555;
-      margin-bottom: 1.5em;
+      margin-bottom: 1.2em;
     }
     a {
       color: #0066cc;
       text-decoration: none;
       margin-right: 12px;
     }
-    a:hover {
-      text-decoration: underline;
-    }
-    .section {
-      margin-top: 2em;
-    }
-    .item {
-      margin-bottom: 1.2em;
-    }
-    .meta {
-      color: #555;
-      font-size: 0.95em;
-    }
-    ul {
-      margin-top: 0.4em;
+    a:hover { text-decoration: underline; }
+    .section { margin-top: 2em; }
+    .item { margin-bottom: 1.2em; }
+    .meta { color: #555; font-size: 0.95em; }
+    ul { margin-top: 0.4em; }
+    .pill {
+      display: inline-block;
+      padding: 2px 10px;
+      border: 1px solid #ddd;
+      border-radius: 999px;
+      margin: 4px 6px 0 0;
+      font-size: 0.92em;
+      color: #333;
     }
   </style>
 </head>
@@ -52,12 +50,12 @@
 
   <h1>Ziaul Alam</h1>
   <div class="subtitle">
-    Computer Science & Health Sciences · Data Analytics · Automation
+    Computer Science · Data Analytics · Automation · Dashboards
   </div>
 
   <p>
-    Senior undergraduate student at Long Island University Brooklyn pursuing a B.S. in Computer Science & Health Sciences
-    with experience in data analytics, workflow automation, and regulated operational environments.
+    B.S. Computer Science student at Long Island University with experience building analytics workflows using SQL, Tableau, and Python
+    across financial reporting and clinical operations.
   </p>
 
   <p>
@@ -70,7 +68,7 @@
     <h2>Education</h2>
     <div class="item">
       <strong>Long Island University, Brooklyn, NY</strong><br/>
-      <span class="meta">B.S. Computer Science & Health Sciences · Expected Spring 2026 · GPA: 3.58</span><br/>
+      <span class="meta">B.S. Computer Science · Expected December 2026 · GPA: 3.58 · Dean’s List (2021–Present)</span><br/>
       Relevant coursework: Human-Computer Interaction, Assistive Programming, Data Structures & Algorithms, Applied Machine Learning
     </div>
   </div>
@@ -79,28 +77,27 @@
     <h2>Experience</h2>
 
     <div class="item">
-      <strong>Rehab Haven — Occupational Therapy Intern</strong><br/>
-      <span class="meta">Brooklyn, NY · May 2025 – June 2025</span>
+      <strong>Condata Accounting — Data Operations Intern</strong><br/>
+      <span class="meta">Brooklyn, NY · Aug 2025 – Sep 2025</span>
       <ul>
-        <li>Documented service coding and generated invoices for patient appointments.</li>
-        <li>Shadowed payment reconciliation processes within the EHR system.</li>
-        <li>Monitored backend workflows and identified opportunities to improve patient billing and scheduling.</li>
-        <li>Tracked key metrics such as session duration and discharge status over multi-week periods.</li>
-        <li>Coordinated directly with patients and family members to support clinical scheduling.</li>
+        <li>Dropped reporting discrepancies, reducing manual back-and-forth by <strong>~25–30% (estimate)</strong> for senior staff during year-end tasks.</li>
+        <li>Used <strong>SQL</strong> and <strong>Tableau</strong> to parse <strong>1,000+ financial records</strong> and resolve disparities, reducing exception-handling time by <strong>~4 hours/week</strong>.</li>
+        <li>Optimized spreadsheets and documentation (templates, definitions, repeatable steps) to make reporting easier and less error-prone.</li>
+        <li>Facilitated data integrity across historical and incoming data; identified a <strong>~15% discrepancy rate</strong> and improved downstream reporting reliability.</li>
       </ul>
     </div>
 
     <div class="item">
-      <strong>Condata Accounting — Accounting & Data Intern</strong><br/>
-      <span class="meta">Brooklyn, NY · June 2025 – September 2025</span>
+      <strong>Centers Urgent Care — Clinical Operations Intern</strong><br/>
+      <span class="meta">Astoria, NY · Jun 2025 – Sep 2025</span>
       <ul>
-        <li>Supported day-to-day financial data operations, reconciliations, and reporting accuracy.</li>
-        <li>Investigated discrepancies across accounting records and corrected underlying data issues.</li>
-        <li>Restructured spreadsheets and documentation to reduce recurring reporting errors.</li>
-        <li>Automated redundant workflows using SQL, Excel, and Tableau to improve turnaround time.</li>
-        <li>Communicated findings clearly to non-technical stakeholders.</li>
+        <li>Built an interactive <strong>Tableau</strong> dashboard showing a <strong>~15% bottleneck</strong> in discharge-status workflows over <strong>4 weeks</strong>.</li>
+        <li>Coordinated hand-offs and appointment logistics, reducing patient turnaround time by <strong>~10–20%</strong>.</li>
+        <li>Administered scheduling protocol for <strong>~15 appointments/day</strong> while adhering to compliance rules and clinic procedures.</li>
+        <li>Audited payment reconciliation workflow in <strong>eClinicalWorks</strong> and proposed process improvements.</li>
       </ul>
     </div>
+
   </div>
 
   <div class="section">
@@ -108,36 +105,54 @@
 
     <div class="item">
       <strong>Sales & Revenue Optimization Dashboard</strong><br/>
-      <span class="meta">Python · SQL · Tableau</span>
+      <span class="meta">New York, NY · Dec 2025</span>
       <ul>
-        <li>Analyzed sales and operational data to identify key revenue drivers.</li>
-        <li>Translated findings into actionable decisions around pricing, inventory, marketing, and operations.</li>
-        <li>Built an interactive dashboard to support executive-level decision making.</li>
+        <li>Analyzed sales and operational data to identify revenue-driving products and margin opportunities.</li>
+        <li>Translated company revenue data into actionable recommendations across cost, marketing, and operational strategy.</li>
+        <li>Designed a dashboard suitable for non-technical stakeholders to explore findings without working directly with raw data.</li>
       </ul>
-      <a href="PROJECT_LINK_HERE">View on GitHub</a>
+      <a href="https://github.com/ziaulalam1">View on GitHub</a>
     </div>
+
+    <div class="item">
+      <strong>Forage Bioinformatics (In Progress)</strong><br/>
+      <span class="meta">New York, NY · Dec 2025 – Present</span>
+      <ul>
+        <li>Building a Python workflow for genomic QC and alignment orchestration with a CLI entry point, structured logging, and reproducible folder outputs.</li>
+        <li>Producing QC report artifacts (CSV/HTML) and variant-style reports using <strong>Pandas</strong> and <strong>SciPy</strong>.</li>
+      </ul>
+    </div>
+
   </div>
 
   <div class="section">
     <h2>Skills</h2>
-    <p>
-      <strong>Languages:</strong> Python, SQL, JavaScript<br/>
-      <strong>Data:</strong> Pandas, Jupyter, Excel (Advanced), Tableau<br/>
-      <strong>APIs & Backend:</strong> Flask, REST APIs, JSON<br/>
-      <strong>AI:</strong> GPT-4 API, LangChain, Hugging Face<br/>
-      <strong>Dev & Cloud:</strong> Git/GitHub, Docker, AWS, Linux/CLI<br/>
-      <strong>Operations:</strong> Salesforce (CRM), stakeholder reporting, process improvement
-    </p>
+    <div>
+      <span class="pill">Python</span>
+      <span class="pill">SQL</span>
+      <span class="pill">JavaScript</span>
+      <span class="pill">Tableau</span>
+      <span class="pill">Pandas</span>
+      <span class="pill">Jupyter</span>
+      <span class="pill">Excel (Advanced)</span>
+      <span class="pill">Flask</span>
+      <span class="pill">REST APIs</span>
+      <span class="pill">JSON</span>
+      <span class="pill">Git/GitHub</span>
+      <span class="pill">Docker</span>
+      <span class="pill">AWS</span>
+      <span class="pill">Linux/CLI</span>
+      <span class="pill">LangChain</span>
+      <span class="pill">Hugging Face</span>
+      <span class="pill">Salesforce (CRM)</span>
+    </div>
   </div>
 
   <div class="section">
     <h2>Leadership & Certifications</h2>
     <p>
-      Computer Science Club Lead — LIU Brooklyn<br/>
-      Community Tutoring Volunteer — Pre-Health Society<br/>
-      Distinguished Scholars Scholarship Recipient<br/>
-      AWS Cloud Practitioner (in progress)<br/>
-      Docker Fundamentals Badge
+      Computer Science Club Organizer · Community Tutoring Volunteer · Pre-Health Society<br/>
+      Distinguished Scholars Scholarship Recipient · AWS Cloud Practitioner (in progress) · Docker Fundamentals Badge
     </p>
   </div>
 
