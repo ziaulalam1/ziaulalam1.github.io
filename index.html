@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ziaul Alam</title>
+  <meta name="description" content="Software engineer building backend systems, data pipelines, and ML tools. NYC.">
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -32,44 +33,34 @@
     }
 
     /* -- Header -- */
-    header {
-      padding: 80px 0 56px;
-    }
-
+    header { padding: 80px 0 56px; }
     header h1 {
       font-size: 2rem;
       font-weight: 700;
       letter-spacing: -0.03em;
       margin-bottom: 8px;
     }
-
     header .bio {
       color: var(--muted);
       font-size: 1rem;
       max-width: 520px;
       line-height: 1.6;
     }
-
     .header-links {
       display: flex;
       gap: 20px;
       margin-top: 20px;
     }
-
     .header-links a {
       color: var(--muted);
       text-decoration: none;
       font-size: 0.875rem;
       transition: color 0.15s;
     }
-
     .header-links a:hover { color: var(--text); }
 
     /* -- Section -- */
-    section {
-      padding: 8px 0 80px;
-    }
-
+    section { padding: 8px 0 80px; }
     .section-label {
       font-size: 0.7rem;
       font-weight: 600;
@@ -80,11 +71,7 @@
     }
 
     /* -- Project cards -- */
-    .projects {
-      display: grid;
-      gap: 16px;
-    }
-
+    .projects { display: grid; gap: 16px; }
     .card {
       border: 1px solid var(--border);
       border-radius: 12px;
@@ -92,12 +79,10 @@
       background: var(--surface);
       transition: border-color 0.15s, transform 0.15s;
     }
-
     .card:hover {
       border-color: #363636;
       transform: translateY(-1px);
     }
-
     .card-top {
       display: flex;
       align-items: baseline;
@@ -106,18 +91,8 @@
       margin-bottom: 8px;
       flex-wrap: wrap;
     }
-
-    .card h2 {
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .card-links {
-      display: flex;
-      gap: 12px;
-      flex-shrink: 0;
-    }
-
+    .card h2 { font-size: 1rem; font-weight: 600; }
+    .card-links { display: flex; gap: 12px; flex-shrink: 0; }
     .card-links a {
       font-size: 0.8rem;
       color: var(--accent);
@@ -125,21 +100,14 @@
       white-space: nowrap;
       transition: opacity 0.15s;
     }
-
     .card-links a:hover { opacity: 0.8; }
-
-    .card-links a.demo {
-      color: var(--green);
-      font-weight: 600;
-    }
-
+    .card-links a.demo { color: var(--green); font-weight: 600; }
     .card p {
       color: var(--muted);
       font-size: 0.875rem;
       margin-bottom: 16px;
       line-height: 1.55;
     }
-
     .card-meta {
       display: flex;
       align-items: center;
@@ -147,13 +115,7 @@
       flex-wrap: wrap;
       gap: 12px;
     }
-
-    .tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-    }
-
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
       font-size: 0.72rem;
       padding: 3px 10px;
@@ -162,7 +124,6 @@
       color: #999;
       background: #1a1a1a;
     }
-
     .metric {
       font-size: 0.75rem;
       color: var(--green);
@@ -170,15 +131,12 @@
       font-family: "SF Mono", "Fira Code", "Consolas", monospace;
       white-space: nowrap;
     }
-
-    /* -- Benchmark image -- */
     .card-img {
       margin-top: 16px;
       border-radius: 8px;
       overflow: hidden;
       border: 1px solid var(--border);
     }
-
     .card-img img {
       width: 100%;
       display: block;
@@ -219,225 +177,7 @@
 
     <section>
       <p class="section-label">Projects</p>
-
-      <div class="projects">
-
-        <!-- 1. LegalAI -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Legal Document Classifier</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/legalai">GitHub</a>
-              <a class="demo" href="https://huggingface.co/spaces/ziaulalam1/ldc">Try it live</a>
-            </div>
-          </div>
-          <p>Classifies legal documents -- motions, briefs, depositions, orders, exhibits -- using sentence embeddings and logistic regression. Fine-tuned transformer embeddings outperform TF-IDF baseline. Runs in a read-only Docker container; deployed as a Gradio web demo.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">NLP</span>
-              <span class="tag">scikit-learn</span>
-              <span class="tag">Docker</span>
-              <span class="tag">HuggingFace</span>
-            </div>
-            <span class="metric">+19pt F1 over TF-IDF</span>
-          </div>
-        </div>
-
-        <!-- 2. Pre-Trade Analytics Dashboard -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Pre-Trade Analytics Dashboard</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/pre-trade-dashboard">GitHub</a>
-            </div>
-          </div>
-          <p>Options pricing engine implementing Black-Scholes with full Greeks computation. React frontend for interactive analysis, Node.js backend with 13 passing tests and 10 benchmark scenarios. Put-call parity verified to 1e-10 precision.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">TypeScript</span>
-              <span class="tag">React</span>
-              <span class="tag">Node.js</span>
-              <span class="tag">Vite</span>
-            </div>
-            <span class="metric">p50=0.004ms | error &lt; 0.0045</span>
-          </div>
-        </div>
-
-        <!-- 3. Delivery Order Router -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Delivery Order Router</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/delivery-order-router">GitHub</a>
-            </div>
-          </div>
-          <p>Order assignment API with greedy load balancing. Every order assigned exactly once, no dasher over capacity. FastAPI service with SQLite in-memory store, 6 invariant tests, and a 1000-request benchmark proving zero errors under load.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">pytest</span>
-            </div>
-            <span class="metric">1,211 req/s | 0 errors</span>
-          </div>
-          <div class="card-img">
-            <img src="img/delivery-router.png" alt="Delivery Order Router benchmark: latency distribution and throughput" loading="lazy">
-          </div>
-        </div>
-
-        <!-- 4. Go Ride Simulator -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Go Ride Request Simulator</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/go-ride-simulator">GitHub</a>
-            </div>
-          </div>
-          <p>Concurrent ride-request state machine using goroutines and channels. Enforces strict state ordering (REQUESTED -> ACCEPTED -> IN_PROGRESS -> COMPLETED) under concurrent load. Structured JSON logs for every state transition.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Go</span>
-              <span class="tag">Goroutines</span>
-              <span class="tag">Channels</span>
-              <span class="tag">JSON</span>
-            </div>
-            <span class="metric">3/3 invariants | goroutine-safe</span>
-          </div>
-        </div>
-
-        <!-- 5. Stat Arb Backtester -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Statistical Arbitrage Backtester</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/stat-arb-backtester">GitHub</a>
-            </div>
-          </div>
-          <p>Pairs trading signal engine with z-score pipeline. Backtests mean-reversion strategies on correlated equity pairs using rolling spread calculations. 19 invariant tests verify no lookahead bias, correct signal logic, and bounded positions.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">NumPy</span>
-              <span class="tag">statsmodels</span>
-            </div>
-            <span class="metric">19 tests | no lookahead</span>
-          </div>
-        </div>
-
-        <!-- 6. DG Portfolio Monitor -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Distributed Generation Portfolio Monitor</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/dg-portfolio-monitor">GitHub</a>
-            </div>
-          </div>
-          <p>Fault detection for distributed generation assets using segmented analysis. Monitors a mixed-scale fleet (small rooftop + large commercial) where naive thresholds miss faults entirely. Segmented approach catches all injected faults with near-zero false positives.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">NumPy</span>
-              <span class="tag">matplotlib</span>
-            </div>
-            <span class="metric">Recall=1.0 | FPR=0.003</span>
-          </div>
-          <div class="card-img">
-            <img src="img/dg-monitor.png" alt="DG Portfolio Monitor: segmented vs naive false positive comparison" loading="lazy">
-          </div>
-        </div>
-
-        <!-- 7. Security Risk Reporter -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Security Risk Reporter</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/security-risk-reporter">GitHub</a>
-            </div>
-          </div>
-          <p>Security event scoring pipeline that processes 800 events across 5 sites over a 90-day window. Produces risk scores bounded [0,1], color-coded Excel dashboards, and a benchmark report. Six invariants guarantee count preservation and score bounds.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">pandas</span>
-              <span class="tag">matplotlib</span>
-              <span class="tag">openpyxl</span>
-            </div>
-            <span class="metric">800 events | 106ms pipeline</span>
-          </div>
-          <div class="card-img">
-            <img src="img/risk-reporter.png" alt="Security Risk Reporter: risk scores across sites" loading="lazy">
-          </div>
-        </div>
-
-        <!-- 8. Integration Onboarding Monitor -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Integration Onboarding Monitor</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/integration-onboarding-monitor">GitHub</a>
-            </div>
-          </div>
-          <p>Schema gate API that validates integration payloads before they reach the database. 100% of malformed payloads rejected at the gate. Structured JSON logs per customer, 15 passing tests, and a 1000-request throughput benchmark.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">SQLite</span>
-              <span class="tag">pytest</span>
-            </div>
-            <span class="metric">67.3 req/s | 100% malformed rejected</span>
-          </div>
-          <div class="card-img">
-            <img src="img/onboarding-monitor.png" alt="Integration Onboarding Monitor: throughput benchmark" loading="lazy">
-          </div>
-        </div>
-
-        <!-- 9. Centerbridge -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Centerbridge Webhook Relay</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/Centerbridge">GitHub</a>
-            </div>
-          </div>
-          <p>Webhook relay service with an append-only audit log using SHA-256 checksums. Async delivery with retries, rate limiting, and k6 spike testing. Every payload is checksummed before storage -- no silent data corruption.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">FastAPI</span>
-              <span class="tag">PostgreSQL</span>
-              <span class="tag">asyncpg</span>
-              <span class="tag">k6</span>
-            </div>
-            <span class="metric">200+ RPS | &lt;180ms p95</span>
-          </div>
-        </div>
-
-        <!-- 10. Recon-Toolkit -->
-        <div class="card">
-          <div class="card-top">
-            <h2>Recon-Toolkit</h2>
-            <div class="card-links">
-              <a href="https://github.com/ziaulalam1/recon-toolkit">GitHub</a>
-            </div>
-          </div>
-          <p>Production-grade CLI for CSV reconciliation targeting fintech and ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails. Handles mismatched schemas and encoding edge cases.</p>
-          <div class="card-meta">
-            <div class="tags">
-              <span class="tag">Python</span>
-              <span class="tag">CLI</span>
-              <span class="tag">pandas</span>
-              <span class="tag">CSV</span>
-            </div>
-            <span class="metric">PK matching | exception reports</span>
-          </div>
-        </div>
-
-      </div>
+      <div class="projects" id="projects"></div>
     </section>
 
     <footer>
@@ -447,5 +187,129 @@
     </footer>
 
   </div>
+
+  <script>
+    // ── Project data ──────────────────────────────────────────────────────────
+    // To add a project: append one object to this array. That's it.
+    const projects = [
+      {
+        name: "Legal Document Classifier",
+        desc: "Classifies legal documents -- motions, briefs, depositions, orders, exhibits -- using sentence embeddings and logistic regression. Fine-tuned transformer embeddings outperform TF-IDF baseline. Runs in a read-only Docker container; deployed as a Gradio web demo.",
+        tags: ["Python", "NLP", "scikit-learn", "Docker", "HuggingFace"],
+        metric: "+19pt F1 over TF-IDF",
+        github: "https://github.com/ziaulalam1/legalai",
+        demo: "https://huggingface.co/spaces/ziaulalam1/ldc",
+        img: null
+      },
+      {
+        name: "Pre-Trade Analytics Dashboard",
+        desc: "Options pricing engine implementing Black-Scholes with full Greeks computation. React frontend for interactive scenario analysis and P&L attribution. Put-call parity verified to 1e-10 precision.",
+        tags: ["TypeScript", "React", "Black-Scholes", "Vite"],
+        metric: "p50=0.004ms | error < 0.0045",
+        github: "https://github.com/ziaulalam1/pre-trade-dashboard",
+        demo: "dashboard/",
+        img: null
+      },
+      {
+        name: "Delivery Order Router",
+        desc: "Order assignment API with greedy load balancing. Every order assigned exactly once, no dasher over capacity. FastAPI service with SQLite in-memory store, 6 invariant tests, and a 1000-request benchmark proving zero errors under load.",
+        tags: ["Python", "FastAPI", "SQLite", "pytest"],
+        metric: "1,211 req/s | 0 errors",
+        github: "https://github.com/ziaulalam1/delivery-order-router",
+        demo: null,
+        img: "img/delivery-router.png"
+      },
+      {
+        name: "Go Ride Request Simulator",
+        desc: "Concurrent ride-request state machine using goroutines and channels. Enforces strict state ordering (REQUESTED -> ACCEPTED -> IN_PROGRESS -> COMPLETED) under concurrent load. Structured JSON logs for every state transition.",
+        tags: ["Go", "Goroutines", "Channels", "JSON"],
+        metric: "3/3 invariants | goroutine-safe",
+        github: "https://github.com/ziaulalam1/go-ride-simulator",
+        demo: null,
+        img: null
+      },
+      {
+        name: "Statistical Arbitrage Backtester",
+        desc: "Pairs trading signal engine with z-score pipeline. Backtests mean-reversion strategies on correlated equity pairs using rolling spread calculations. 19 invariant tests verify no lookahead bias, correct signal logic, and bounded positions.",
+        tags: ["Python", "pandas", "NumPy", "statsmodels"],
+        metric: "19 tests | no lookahead",
+        github: "https://github.com/ziaulalam1/stat-arb-backtester",
+        demo: null,
+        img: null
+      },
+      {
+        name: "Distributed Generation Portfolio Monitor",
+        desc: "Fault detection for distributed generation assets using segmented analysis. Monitors a mixed-scale fleet (small rooftop + large commercial) where naive thresholds miss faults entirely. Segmented approach catches all injected faults with near-zero false positives.",
+        tags: ["Python", "pandas", "NumPy", "matplotlib"],
+        metric: "Recall=1.0 | FPR=0.003",
+        github: "https://github.com/ziaulalam1/dg-portfolio-monitor",
+        demo: null,
+        img: "img/dg-monitor.png"
+      },
+      {
+        name: "Security Risk Reporter",
+        desc: "Security event scoring pipeline that processes 800 events across 5 sites over a 90-day window. Produces risk scores bounded [0,1], color-coded Excel dashboards, and a benchmark report. Six invariants guarantee count preservation and score bounds.",
+        tags: ["Python", "pandas", "matplotlib", "openpyxl"],
+        metric: "800 events | 106ms pipeline",
+        github: "https://github.com/ziaulalam1/security-risk-reporter",
+        demo: null,
+        img: "img/risk-reporter.png"
+      },
+      {
+        name: "Integration Onboarding Monitor",
+        desc: "Schema gate API that validates integration payloads before they reach the database. 100% of malformed payloads rejected at the gate. Structured JSON logs per customer, 15 passing tests, and a 1000-request throughput benchmark.",
+        tags: ["Python", "FastAPI", "SQLite", "pytest"],
+        metric: "67.3 req/s | 100% malformed rejected",
+        github: "https://github.com/ziaulalam1/integration-onboarding-monitor",
+        demo: null,
+        img: "img/onboarding-monitor.png"
+      },
+      {
+        name: "Centerbridge Webhook Relay",
+        desc: "Webhook relay service with an append-only audit log using SHA-256 checksums. Async delivery with retries, rate limiting, and k6 spike testing. Every payload is checksummed before storage -- no silent data corruption.",
+        tags: ["Python", "FastAPI", "PostgreSQL", "asyncpg", "k6"],
+        metric: "200+ RPS | <180ms p95",
+        github: "https://github.com/ziaulalam1/Centerbridge",
+        demo: null,
+        img: null
+      },
+      {
+        name: "Recon-Toolkit",
+        desc: "Production-grade CLI for CSV reconciliation targeting fintech and ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails. Handles mismatched schemas and encoding edge cases.",
+        tags: ["Python", "CLI", "pandas", "CSV"],
+        metric: "PK matching | exception reports",
+        github: "https://github.com/ziaulalam1/recon-toolkit",
+        demo: null,
+        img: null
+      }
+    ];
+
+    // ── Render ────────────────────────────────────────────────────────────────
+    const container = document.getElementById("projects");
+    projects.forEach(p => {
+      const links = `<a href="${p.github}">GitHub</a>`
+        + (p.demo ? `<a class="demo" href="${p.demo}">${p.demo.includes("huggingface") ? "Try it live" : "Live demo"}</a>` : "");
+
+      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join("");
+
+      const img = p.img
+        ? `<div class="card-img"><img src="${p.img}" alt="${p.name} benchmark" loading="lazy"></div>`
+        : "";
+
+      container.innerHTML += `
+        <div class="card">
+          <div class="card-top">
+            <h2>${p.name}</h2>
+            <div class="card-links">${links}</div>
+          </div>
+          <p>${p.desc}</p>
+          <div class="card-meta">
+            <div class="tags">${tags}</div>
+            <span class="metric">${p.metric}</span>
+          </div>
+          ${img}
+        </div>`;
+    });
+  </script>
 </body>
 </html>
