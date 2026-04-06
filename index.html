@@ -5,10 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ziaul Alam -- Software Engineer</title>
   <meta name="description" content="10 projects. Every one ships with invariant tests and a benchmark. Backend systems, data pipelines, ML. NYC.">
-
-  <!-- OG tags for link previews (LinkedIn, Slack, iMessage) -->
   <meta property="og:title" content="Ziaul Alam -- Software Engineer">
-  <meta property="og:description" content="10 projects with live demos, invariant tests, and benchmarks. If I can't prove it works, it's not done.">
+  <meta property="og:description" content="10 projects with live demos, invariant tests, and benchmarks. Backend, data, ML. NYC.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ziaulalam1.github.io">
 
@@ -23,6 +21,7 @@
       --muted:   #787878;
       --accent:  #5b8dee;
       --green:   #34d399;
+      --purple:  #a78bfa;
     }
 
     body {
@@ -33,237 +32,121 @@
       -webkit-font-smoothing: antialiased;
     }
 
-    .wrap {
-      max-width: 880px;
-      margin: 0 auto;
-      padding: 0 28px;
-    }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; }
 
     /* -- Header -- */
     header { padding: 80px 0 32px; }
-    header h1 {
-      font-size: 2rem;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-      margin-bottom: 8px;
-    }
-    header .bio {
-      color: var(--muted);
-      font-size: 1rem;
-      max-width: 520px;
-      line-height: 1.6;
-    }
-    .header-links {
-      display: flex;
-      gap: 20px;
-      margin-top: 20px;
-    }
-    .header-links a {
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.875rem;
-      transition: color 0.15s;
-    }
+    header h1 { font-size: 2rem; font-weight: 700; letter-spacing: -0.03em; margin-bottom: 8px; }
+    header .bio { color: var(--muted); font-size: 1rem; max-width: 520px; line-height: 1.6; }
+    .header-links { display: flex; gap: 20px; margin-top: 20px; }
+    .header-links a { color: var(--muted); text-decoration: none; font-size: 0.875rem; transition: color 0.15s; }
     .header-links a:hover { color: var(--text); }
 
-    /* -- Stats bar -- */
-    .stats {
-      display: flex;
-      gap: 32px;
-      padding: 28px 0 40px;
-      flex-wrap: wrap;
-    }
+    /* -- Stats -- */
+    .stats { display: flex; gap: 32px; padding: 28px 0 40px; flex-wrap: wrap; }
     .stat { display: flex; flex-direction: column; }
-    .stat-number {
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: var(--text);
-      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
-    }
-    .stat-label {
-      font-size: 0.72rem;
-      color: var(--muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-top: 2px;
-    }
+    .stat-number { font-size: 1.5rem; font-weight: 700; font-family: "SF Mono", "Fira Code", "Consolas", monospace; }
+    .stat-label { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-top: 2px; }
 
     /* -- Philosophy -- */
-    .philosophy {
-      padding: 0 0 48px;
-      max-width: 620px;
-    }
-    .philosophy p {
-      color: var(--muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
-    }
-    .philosophy strong {
-      color: var(--text);
-      font-weight: 600;
-    }
+    .philosophy { padding: 0 0 48px; max-width: 640px; }
+    .philosophy p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; }
+    .philosophy strong { color: var(--text); font-weight: 600; }
 
-    /* -- Featured demo -- */
-    .featured { margin-bottom: 48px; }
-    .featured-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--green);
-      margin-bottom: 16px;
+    /* -- Section labels -- */
+    .section-label {
+      font-size: 0.7rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.12em; color: var(--muted); margin-bottom: 24px;
     }
-    .featured-card {
+    .section-label.green { color: var(--green); }
+
+    /* -- Featured deep-dive cards -- */
+    .featured { margin-bottom: 56px; }
+    .deep {
       border: 1px solid #2a3a2a;
       border-radius: 12px;
       background: var(--surface);
-      overflow: hidden;
-    }
-    .featured-header {
-      padding: 20px 28px;
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-    .featured-header h2 { font-size: 1rem; font-weight: 600; }
-    .featured-header .flinks { display: flex; gap: 12px; }
-    .featured-header a {
-      font-size: 0.8rem;
-      text-decoration: none;
-      transition: opacity 0.15s;
-    }
-    .featured-header a:hover { opacity: 0.8; }
-    .featured-header a.gh { color: var(--accent); }
-    .featured-header a.open { color: var(--green); font-weight: 600; }
-    .featured-desc {
-      padding: 0 28px 16px;
-      color: var(--muted);
-      font-size: 0.875rem;
-      line-height: 1.55;
-    }
-    .featured-iframe {
-      width: 100%;
-      height: 520px;
-      border: none;
-      border-top: 1px solid var(--border);
-    }
-    .featured-meta {
-      padding: 16px 28px;
-      border-top: 1px solid var(--border);
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
-
-    /* -- Section -- */
-    section { padding: 8px 0 80px; }
-    .section-label {
-      font-size: 0.7rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      color: var(--muted);
-      margin-bottom: 24px;
-    }
-
-    /* -- Project cards -- */
-    .projects { display: grid; gap: 16px; }
-    .card {
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 24px 28px;
-      background: var(--surface);
-      transition: border-color 0.15s, transform 0.15s;
-    }
-    .card:hover {
-      border-color: #363636;
-      transform: translateY(-1px);
-    }
-    .card-top {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 16px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-    }
-    .card h2 { font-size: 1rem; font-weight: 600; }
-    .card-links { display: flex; gap: 12px; flex-shrink: 0; }
-    .card-links a {
-      font-size: 0.8rem;
-      color: var(--accent);
-      text-decoration: none;
-      white-space: nowrap;
-      transition: opacity 0.15s;
-    }
-    .card-links a:hover { opacity: 0.8; }
-    .card-links a.demo { color: var(--green); font-weight: 600; }
-    .card p {
-      color: var(--muted);
-      font-size: 0.875rem;
+      padding: 28px 32px;
       margin-bottom: 16px;
-      line-height: 1.55;
+      transition: border-color 0.15s;
     }
-    .card-meta {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 12px;
+    .deep:hover { border-color: #3a4a3a; }
+    .deep-top {
+      display: flex; align-items: baseline; justify-content: space-between;
+      gap: 16px; margin-bottom: 6px; flex-wrap: wrap;
+    }
+    .deep h2 { font-size: 1.05rem; font-weight: 600; }
+    .deep-links { display: flex; gap: 12px; flex-shrink: 0; }
+    .deep-links a { font-size: 0.8rem; text-decoration: none; transition: opacity 0.15s; }
+    .deep-links a:hover { opacity: 0.8; }
+    .deep-links a.gh { color: var(--accent); }
+    .deep-links a.demo { color: var(--green); font-weight: 600; }
+
+    .deep-section { margin-top: 16px; }
+    .deep-section-label {
+      font-size: 0.68rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.1em; color: #666; margin-bottom: 6px;
+    }
+    .deep-section p {
+      color: var(--muted); font-size: 0.85rem; line-height: 1.6;
+    }
+
+    .deep-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 12px; margin-top: 20px;
     }
     .tags { display: flex; flex-wrap: wrap; gap: 6px; }
     .tag {
-      font-size: 0.72rem;
-      padding: 3px 10px;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      color: #999;
-      background: #1a1a1a;
+      font-size: 0.72rem; padding: 3px 10px; border-radius: 20px;
+      border: 1px solid var(--border); color: #999; background: #1a1a1a;
     }
     .metric {
-      font-size: 0.75rem;
-      color: var(--green);
-      font-weight: 500;
-      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
-      white-space: nowrap;
+      font-size: 0.75rem; color: var(--green); font-weight: 500;
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace; white-space: nowrap;
     }
     .invariant {
-      font-size: 0.78rem;
-      color: #a78bfa;
-      margin-top: 12px;
-      padding: 8px 12px;
-      background: #1a1528;
-      border: 1px solid #2d2244;
-      border-radius: 6px;
-      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+      font-size: 0.78rem; color: var(--purple); margin-top: 14px;
+      padding: 8px 12px; background: #1a1528; border: 1px solid #2d2244;
+      border-radius: 6px; font-family: "SF Mono", "Fira Code", "Consolas", monospace;
     }
-    .invariant::before {
-      content: "invariant: ";
-      color: #6d5aad;
-      font-weight: 600;
-    }
-    .card-img {
-      margin-top: 16px;
-      border-radius: 8px;
-      overflow: hidden;
+    .invariant::before { content: "invariant: "; color: #6d5aad; font-weight: 600; }
+
+    .deep-img {
+      margin-top: 16px; border-radius: 8px; overflow: hidden;
       border: 1px solid var(--border);
     }
-    .card-img img {
-      width: 100%;
-      display: block;
-      background: #111;
+    .deep-img img { width: 100%; display: block; background: #111; }
+
+    /* -- Compact grid -- */
+    .compact-section { padding: 8px 0 80px; }
+    .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+    .mini {
+      border: 1px solid var(--border); border-radius: 10px;
+      padding: 18px 20px; background: var(--surface);
+      transition: border-color 0.15s, transform 0.15s;
     }
+    .mini:hover { border-color: #363636; transform: translateY(-1px); }
+    .mini h3 { font-size: 0.88rem; font-weight: 600; margin-bottom: 6px; }
+    .mini-desc { color: var(--muted); font-size: 0.78rem; line-height: 1.5; margin-bottom: 10px; }
+    .mini-meta {
+      display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 8px;
+    }
+    .mini-links { display: flex; gap: 10px; }
+    .mini-links a {
+      font-size: 0.75rem; color: var(--accent); text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .mini-links a:hover { opacity: 0.8; }
+    .mini-links a.demo { color: var(--green); font-weight: 600; }
+    .mini .metric { font-size: 0.7rem; }
+    .mini .tags { gap: 4px; }
+    .mini .tag { font-size: 0.65rem; padding: 2px 8px; }
 
     /* -- Footer -- */
     footer {
-      padding: 32px 0 56px;
-      border-top: 1px solid var(--border);
-      color: var(--muted);
-      font-size: 0.8rem;
+      padding: 32px 0 56px; border-top: 1px solid var(--border);
+      color: var(--muted); font-size: 0.8rem;
     }
 
     /* -- Responsive -- */
@@ -273,13 +156,9 @@
       .wrap { padding: 0 20px; }
       .stats { gap: 20px; }
       .stat-number { font-size: 1.25rem; }
-      .card { padding: 20px; }
-      .card-top { flex-direction: column; gap: 8px; }
-      .card-meta { flex-direction: column; align-items: flex-start; }
-      .featured-iframe { height: 380px; }
-      .featured-header { padding: 16px 20px; }
-      .featured-desc { padding: 0 20px 12px; }
-      .featured-meta { padding: 12px 20px; }
+      .deep { padding: 20px; }
+      .grid { grid-template-columns: 1fr; }
+      .mini { padding: 16px; }
     }
   </style>
 </head>
@@ -297,42 +176,46 @@
     </header>
 
     <div class="stats">
-      <div class="stat">
-        <span class="stat-number">10</span>
-        <span class="stat-label">Projects</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">87+</span>
-        <span class="stat-label">Tests passing</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">5</span>
-        <span class="stat-label">Languages</span>
-      </div>
-      <div class="stat">
-        <span class="stat-number">2</span>
-        <span class="stat-label">Live demos</span>
-      </div>
+      <div class="stat"><span class="stat-number">10</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
+      <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
+      <div class="stat"><span class="stat-number">2</span><span class="stat-label">Live demos</span></div>
     </div>
 
     <div class="philosophy">
-      <p>Every project here ships with <strong>invariant tests</strong> and a <strong>benchmark</strong>. The invariant defines what must always be true -- orders never dropped, scores always bounded, payloads validated before they touch the database. The benchmark proves it holds under load. If I can't prove it works, it's not done.</p>
+      <p>Every project here ships with <strong>invariant tests</strong> and a <strong>benchmark</strong>. The invariant defines what must always be true. The benchmark proves it holds under load. Anyone can generate code that compiles. The harder question is: what property did you choose to guarantee, and how did you verify it?</p>
     </div>
 
-    <!-- Featured: interactive demo loads immediately -->
+    <!-- ══════════════ FEATURED: 3 deep dives ══════════════ -->
     <div class="featured">
-      <p class="featured-label">Featured -- try it now</p>
-      <div class="featured-card">
-        <div class="featured-header">
+      <p class="section-label green">Featured</p>
+
+      <!-- 1. Pre-Trade Dashboard -->
+      <div class="deep">
+        <div class="deep-top">
           <h2>Pre-Trade Analytics Dashboard</h2>
-          <div class="flinks">
+          <div class="deep-links">
             <a class="gh" href="https://github.com/ziaulalam1/pre-trade-dashboard">GitHub</a>
-            <a class="open" href="dashboard/">Open full screen</a>
+            <a class="demo" href="dashboard/">Live demo</a>
           </div>
         </div>
-        <p class="featured-desc">Most options pricing code trusts the math without verifying it. This engine proves put-call parity holds to 1e-10 and benchmarks Greeks computation against known reference prices. Change any input below and watch it recompute -- all client-side, no backend.</p>
-        <iframe class="featured-iframe" src="dashboard/" title="Pre-Trade Analytics Dashboard" loading="lazy"></iframe>
-        <div class="featured-meta">
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>Options pricing libraries are easy to write and hard to trust. Most implementations get the happy path right but silently produce wrong Greeks under edge conditions -- deep out-of-the-money, near-zero expiry, extreme volatility. The errors compound when you build scenario analysis or P&L attribution on top.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>Instead of testing outputs against a textbook table (which only covers a few cases), I verified put-call parity as a structural invariant -- it must hold to 1e-10 for every combination of inputs. If parity breaks, the entire pricing model is wrong. This catches classes of bugs that example-based tests miss. I also built the engine to run client-side so the demo works without a backend -- the math is the same, the deployment is simpler.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">What I'd change</div>
+          <p>The current model assumes constant volatility. Real options markets have a volatility surface. Adding surface interpolation and re-running the parity check across the surface would be the next step -- same verification principle, harder problem.</p>
+        </div>
+
+        <div class="deep-meta">
           <div class="tags">
             <span class="tag">TypeScript</span>
             <span class="tag">React</span>
@@ -341,149 +224,179 @@
           </div>
           <span class="metric">put-call parity to 1e-10 | p50=0.004ms</span>
         </div>
+        <div class="invariant">put-call parity holds for every input combination, not just textbook examples</div>
+      </div>
+
+      <!-- 2. Delivery Order Router -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Delivery Order Router</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/delivery-order-router">GitHub</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>In a delivery system, a dropped order is worse than a slow one. Naive routing assigns orders without checking dasher capacity or verifying uniqueness -- under concurrent load, orders get double-assigned or fall through entirely. The failure mode is silent: no error, just a missing delivery.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>I defined two invariants before writing any routing logic: every order must be assigned exactly once, and no dasher can exceed capacity. The 6 test suite runs those checks after every assignment round. The 1000-request benchmark isn't about showing speed -- it's about proving zero violations at scale. 1,211 req/s is a side effect of getting the data model right.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">What I'd change</div>
+          <p>The current router is greedy (assign to least-loaded dasher). A cost-minimizing approach that accounts for dasher location and delivery distance would be more realistic. The invariants stay the same -- the routing strategy changes, the correctness guarantee doesn't.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">SQLite</span>
+            <span class="tag">pytest</span>
+          </div>
+          <span class="metric">1,211 req/s | 0 dropped | 0 double-assigned</span>
+        </div>
+        <div class="invariant">every order assigned exactly once, no dasher over capacity</div>
+        <div class="deep-img">
+          <img src="img/delivery-router.png" alt="Delivery Order Router: latency distribution under 1000 concurrent requests" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 3. DG Portfolio Monitor -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Distributed Generation Portfolio Monitor</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/dg-portfolio-monitor">GitHub</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>Anomaly detection on a mixed-scale fleet is a harder problem than it looks. A 5kW rooftop panel and a 500kW commercial array have completely different output profiles. A single threshold that works for the large asset is blind to faults on the small one. Naive monitoring on this fleet catches 0 out of 3 injected faults.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>I segmented assets by capacity class before computing anomaly thresholds. Each segment gets its own baseline derived from its own distribution. The benchmark injects 3 known faults across the mixed fleet and compares segmented vs. naive detection. Segmented catches all 3 with a false positive rate of 0.003. Naive catches zero -- it's not slightly worse, it's completely blind.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">What I'd change</div>
+          <p>The current segmentation is manual (small vs. large). A clustering approach that discovers segments from the data would generalize better to fleets with three or more asset classes. The FPR benchmark should also run on seasonal data -- summer and winter profiles differ enough to change the thresholds.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">pandas</span>
+            <span class="tag">NumPy</span>
+            <span class="tag">matplotlib</span>
+          </div>
+          <span class="metric">Recall=1.0 | FPR=0.003 | naive catches 0/3</span>
+        </div>
+        <div class="invariant">segmented thresholds detect faults that uniform thresholds are completely blind to</div>
+        <div class="deep-img">
+          <img src="img/dg-monitor.png" alt="FPR comparison: segmented monitoring vs naive on mixed-scale fleet" loading="lazy">
+        </div>
       </div>
     </div>
 
-    <!-- All projects -->
-    <section>
-      <p class="section-label">All projects</p>
-      <div class="projects" id="projects"></div>
-    </section>
+    <!-- ══════════════ COMPACT GRID: remaining 7 ══════════════ -->
+    <div class="compact-section">
+      <p class="section-label">More projects</p>
+      <div class="grid" id="grid"></div>
+    </div>
 
     <footer>
-      <div class="wrap" style="padding:0;">
-        Ziaul Alam &middot; NYC &middot; 2026
-      </div>
+      <div class="wrap" style="padding:0;">Ziaul Alam &middot; NYC &middot; 2026</div>
     </footer>
 
   </div>
 
   <script>
-    // ── Project data ──────────────────────────────────────────────────────────
-    // To add a project: append one object. To reorder: move it.
-    // Fields: name, desc, tags, metric, invariant, github, demo, img
-    const projects = [
+    const more = [
       {
         name: "Legal Document Classifier",
-        desc: "TF-IDF gets 5-class legal document classification wrong often enough to be useless in production. Fine-tuned sentence embeddings close that gap by 19 F1 points. The classifier runs in a read-only Docker container and is deployed as a live Gradio demo -- upload a document and get a classification back.",
-        tags: ["Python", "NLP", "scikit-learn", "Docker", "HuggingFace"],
-        metric: "+19pt F1 over TF-IDF baseline",
-        invariant: "every prediction backed by embedding similarity, not keyword heuristics",
+        desc: "5-class legal doc classification using sentence embeddings. +19pt F1 over TF-IDF. Live Gradio demo on HuggingFace.",
+        tags: ["Python", "NLP", "scikit-learn", "Docker"],
+        metric: "+19pt F1",
         github: "https://github.com/ziaulalam1/legalai",
-        demo: "https://huggingface.co/spaces/ziaulalam1/ldc",
-        img: null
-      },
-      {
-        name: "Delivery Order Router",
-        desc: "Naive order routing drops assignments under concurrent load -- dashers get double-booked or orders fall through. This router enforces that every order is assigned exactly once and no dasher exceeds capacity, verified by 6 invariant tests. A 1000-request benchmark proves it holds at scale.",
-        tags: ["Python", "FastAPI", "SQLite", "pytest"],
-        metric: "1,211 req/s | 0 errors | 0 dropped orders",
-        invariant: "every order assigned exactly once, no dasher over capacity",
-        github: "https://github.com/ziaulalam1/delivery-order-router",
-        demo: null,
-        img: "img/delivery-router.png"
+        demo: "https://huggingface.co/spaces/ziaulalam1/ldc"
       },
       {
         name: "Go Ride Request Simulator",
-        desc: "Concurrent state machines are where race conditions hide. This simulator enforces a strict state ordering (REQUESTED -> ACCEPTED -> IN_PROGRESS -> COMPLETED) using goroutines and channels, then verifies the ordering invariant holds under concurrent load. Structured JSON logs capture every transition.",
-        tags: ["Go", "Goroutines", "Channels", "JSON"],
-        metric: "3/3 invariant tests under concurrency",
-        invariant: "state transitions are strictly ordered, even under goroutine contention",
+        desc: "Concurrent ride-request state machine. Goroutines + channels enforce strict state ordering under contention.",
+        tags: ["Go", "Goroutines", "Channels"],
+        metric: "3/3 invariants",
         github: "https://github.com/ziaulalam1/go-ride-simulator",
-        demo: null,
-        img: null
+        demo: null
       },
       {
-        name: "Statistical Arbitrage Backtester",
-        desc: "The hardest bug in a backtester is lookahead bias -- using future data to make past decisions. This z-score pairs trading engine has 19 invariant tests that verify no lookahead, correct signal direction, bounded positions, and spread calculation accuracy. If the test suite passes, the backtest is trustworthy.",
-        tags: ["Python", "pandas", "NumPy", "statsmodels"],
-        metric: "19 invariant tests | 0 lookahead violations",
-        invariant: "no future data leaks into historical signal computation",
+        name: "Stat Arb Backtester",
+        desc: "Pairs trading z-score engine. 19 tests verify no lookahead bias, correct signals, bounded positions.",
+        tags: ["Python", "pandas", "NumPy"],
+        metric: "0 lookahead",
         github: "https://github.com/ziaulalam1/stat-arb-backtester",
-        demo: null,
-        img: null
-      },
-      {
-        name: "Distributed Generation Portfolio Monitor",
-        desc: "A naive anomaly threshold works on uniform fleets but fails on mixed-scale portfolios -- a 5kW rooftop and a 500kW commercial array need different baselines. Segmented monitoring catches all 3 injected faults that naive monitoring misses entirely, with near-zero false positives.",
-        tags: ["Python", "pandas", "NumPy", "matplotlib"],
-        metric: "Recall=1.0 | FPR=0.003 | naive catches 0/3",
-        invariant: "segmented thresholds detect faults that uniform thresholds are blind to",
-        github: "https://github.com/ziaulalam1/dg-portfolio-monitor",
-        demo: null,
-        img: "img/dg-monitor.png"
+        demo: null
       },
       {
         name: "Security Risk Reporter",
-        desc: "Processes 800 security events across 5 sites over a 90-day window into bounded risk scores and color-coded dashboards. Six invariants guarantee that event counts are preserved through the pipeline, scores stay bounded [0,1], and no records are silently dropped.",
-        tags: ["Python", "pandas", "matplotlib", "openpyxl"],
-        metric: "800 events | 106ms pipeline | 6 invariants",
-        invariant: "count preserved, scores bounded [0,1], no silent drops",
+        desc: "800-event scoring pipeline. Six invariants: counts preserved, scores bounded [0,1], no silent drops.",
+        tags: ["Python", "pandas", "matplotlib"],
+        metric: "106ms pipeline",
         github: "https://github.com/ziaulalam1/security-risk-reporter",
-        demo: null,
-        img: "img/risk-reporter.png"
+        demo: null
       },
       {
         name: "Integration Onboarding Monitor",
-        desc: "Malformed integration payloads that reach the database cause cascading failures downstream. This schema gate rejects 100% of invalid payloads before they touch storage, with structured per-customer JSON logs so you can trace exactly which integration sent what.",
-        tags: ["Python", "FastAPI", "SQLite", "pytest"],
-        metric: "67.3 req/s | 100% malformed rejected at gate",
-        invariant: "no invalid payload reaches the database, ever",
+        desc: "Schema gate API. 100% of malformed payloads rejected before they reach the database.",
+        tags: ["Python", "FastAPI", "pytest"],
+        metric: "67.3 req/s",
         github: "https://github.com/ziaulalam1/integration-onboarding-monitor",
-        demo: null,
-        img: "img/onboarding-monitor.png"
+        demo: null
       },
       {
         name: "Centerbridge Webhook Relay",
-        desc: "Webhook delivery is fire-and-forget by default -- if a payload is corrupted in transit, nobody knows. This relay checksums every payload with SHA-256 before writing to an append-only audit log, then retries delivery with exponential backoff. k6 spike tests verify it holds under burst traffic.",
-        tags: ["Python", "FastAPI", "PostgreSQL", "asyncpg", "k6"],
-        metric: "200+ RPS | <180ms p95 | SHA-256 audit trail",
-        invariant: "every stored payload matches its checksum -- no silent corruption",
+        desc: "Append-only audit log with SHA-256 checksums. Async delivery, retries, k6 spike testing.",
+        tags: ["Python", "FastAPI", "PostgreSQL"],
+        metric: "200+ RPS",
         github: "https://github.com/ziaulalam1/Centerbridge",
-        demo: null,
-        img: null
+        demo: null
       },
       {
         name: "Recon-Toolkit",
-        desc: "CSV reconciliation in fintech breaks when schemas don't match, encodings differ, or primary keys have edge cases. This CLI handles all of it -- primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails for compliance.",
-        tags: ["Python", "CLI", "pandas", "CSV"],
-        metric: "PK matching | exception reports | audit trail",
-        invariant: "every row accounted for -- matched, excepted, or flagged",
+        desc: "CSV reconciliation CLI for fintech ops. PK matching, exception labeling, audit trails.",
+        tags: ["Python", "CLI", "pandas"],
+        metric: "full audit trail",
         github: "https://github.com/ziaulalam1/recon-toolkit",
-        demo: null,
-        img: null
+        demo: null
       }
     ];
 
-    // ── Render ────────────────────────────────────────────────────────────────
-    const container = document.getElementById("projects");
-    projects.forEach(p => {
-      const links = `<a href="${p.github}">GitHub</a>`
-        + (p.demo ? `<a class="demo" href="${p.demo}">${p.demo.includes("huggingface") ? "Try it live" : "Live demo"}</a>` : "");
-
+    const grid = document.getElementById("grid");
+    more.forEach(p => {
+      const demoLink = p.demo
+        ? `<a class="demo" href="${p.demo}">Demo</a>`
+        : "";
       const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join("");
 
-      const img = p.img
-        ? `<div class="card-img"><img src="${p.img}" alt="${p.name} benchmark" loading="lazy"></div>`
-        : "";
-
-      const inv = p.invariant
-        ? `<div class="invariant">${p.invariant}</div>`
-        : "";
-
-      container.innerHTML += `
-        <div class="card">
-          <div class="card-top">
-            <h2>${p.name}</h2>
-            <div class="card-links">${links}</div>
-          </div>
-          <p>${p.desc}</p>
-          <div class="card-meta">
-            <div class="tags">${tags}</div>
+      grid.innerHTML += `
+        <div class="mini">
+          <h3>${p.name}</h3>
+          <div class="mini-desc">${p.desc}</div>
+          <div class="mini-meta">
+            <div class="mini-links">
+              <a href="${p.github}">GitHub</a>
+              ${demoLink}
+            </div>
             <span class="metric">${p.metric}</span>
           </div>
-          ${inv}
-          ${img}
+          <div class="tags" style="margin-top:10px">${tags}</div>
         </div>`;
     });
   </script>
