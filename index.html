@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ziaul Alam</title>
-  <meta name="description" content="Software engineer building backend systems, data pipelines, and ML tools. NYC.">
+  <title>Ziaul Alam -- Software Engineer</title>
+  <meta name="description" content="10 projects. 87 tests passing. Backend systems, data pipelines, ML tools. NYC.">
+
+  <!-- OG tags for link previews (LinkedIn, Slack, iMessage) -->
+  <meta property="og:title" content="Ziaul Alam -- Software Engineer">
+  <meta property="og:description" content="10 projects with live demos, benchmark data, and real invariant tests. Backend, data, ML.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://ziaulalam1.github.io">
+
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -33,7 +40,7 @@
     }
 
     /* -- Header -- */
-    header { padding: 80px 0 56px; }
+    header { padding: 80px 0 32px; }
     header h1 {
       font-size: 2rem;
       font-weight: 700;
@@ -58,6 +65,89 @@
       transition: color 0.15s;
     }
     .header-links a:hover { color: var(--text); }
+
+    /* -- Stats bar -- */
+    .stats {
+      display: flex;
+      gap: 32px;
+      padding: 28px 0 56px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      display: flex;
+      flex-direction: column;
+    }
+    .stat-number {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text);
+      font-family: "SF Mono", "Fira Code", "Consolas", monospace;
+    }
+    .stat-label {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-top: 2px;
+    }
+
+    /* -- Featured demo -- */
+    .featured {
+      margin-bottom: 48px;
+    }
+    .featured-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--green);
+      margin-bottom: 16px;
+    }
+    .featured-card {
+      border: 1px solid #2a3a2a;
+      border-radius: 12px;
+      background: var(--surface);
+      overflow: hidden;
+    }
+    .featured-header {
+      padding: 20px 28px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .featured-header h2 { font-size: 1rem; font-weight: 600; }
+    .featured-header .card-links { display: flex; gap: 12px; }
+    .featured-header a {
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: opacity 0.15s;
+    }
+    .featured-header a:hover { opacity: 0.8; }
+    .featured-header a.gh { color: var(--accent); }
+    .featured-header a.open { color: var(--green); font-weight: 600; }
+    .featured-desc {
+      padding: 0 28px 16px;
+      color: var(--muted);
+      font-size: 0.875rem;
+      line-height: 1.55;
+    }
+    .featured-iframe {
+      width: 100%;
+      height: 520px;
+      border: none;
+      border-top: 1px solid var(--border);
+    }
+    .featured-meta {
+      padding: 16px 28px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
 
     /* -- Section -- */
     section { padding: 8px 0 80px; }
@@ -153,12 +243,18 @@
 
     /* -- Responsive -- */
     @media (max-width: 600px) {
-      header { padding: 48px 0 40px; }
+      header { padding: 48px 0 24px; }
       header h1 { font-size: 1.5rem; }
       .wrap { padding: 0 20px; }
+      .stats { gap: 20px; }
+      .stat-number { font-size: 1.25rem; }
       .card { padding: 20px; }
       .card-top { flex-direction: column; gap: 8px; }
       .card-meta { flex-direction: column; align-items: flex-start; }
+      .featured-iframe { height: 380px; }
+      .featured-header { padding: 16px 20px; }
+      .featured-desc { padding: 0 20px 12px; }
+      .featured-meta { padding: 12px 20px; }
     }
   </style>
 </head>
@@ -175,8 +271,54 @@
       </div>
     </header>
 
+    <!-- Stats bar -->
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-number">10</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">87+</span>
+        <span class="stat-label">Tests passing</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">5</span>
+        <span class="stat-label">Languages</span>
+      </div>
+      <div class="stat">
+        <span class="stat-number">2</span>
+        <span class="stat-label">Live demos</span>
+      </div>
+    </div>
+
+    <!-- Featured: interactive demo loads immediately -->
+    <div class="featured">
+      <p class="featured-label">Featured -- try it now</p>
+      <div class="featured-card">
+        <div class="featured-header">
+          <h2>Pre-Trade Analytics Dashboard</h2>
+          <div class="card-links">
+            <a class="gh" href="https://github.com/ziaulalam1/pre-trade-dashboard">GitHub</a>
+            <a class="open" href="dashboard/">Open full screen</a>
+          </div>
+        </div>
+        <p class="featured-desc">Black-Scholes options pricing with full Greeks, scenario analysis, and P&L attribution. Change any input and watch prices update instantly -- all computation runs client-side.</p>
+        <iframe class="featured-iframe" src="dashboard/" title="Pre-Trade Analytics Dashboard" loading="lazy"></iframe>
+        <div class="featured-meta">
+          <div class="tags">
+            <span class="tag">TypeScript</span>
+            <span class="tag">React</span>
+            <span class="tag">Black-Scholes</span>
+            <span class="tag">Vite</span>
+          </div>
+          <span class="metric">p50=0.004ms | error &lt; 0.0045</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- All projects -->
     <section>
-      <p class="section-label">Projects</p>
+      <p class="section-label">All projects</p>
       <div class="projects" id="projects"></div>
     </section>
 
@@ -190,24 +332,15 @@
 
   <script>
     // ── Project data ──────────────────────────────────────────────────────────
-    // To add a project: append one object to this array. That's it.
+    // To add a project: append one object. To reorder: move the object.
     const projects = [
       {
         name: "Legal Document Classifier",
-        desc: "Classifies legal documents -- motions, briefs, depositions, orders, exhibits -- using sentence embeddings and logistic regression. Fine-tuned transformer embeddings outperform TF-IDF baseline. Runs in a read-only Docker container; deployed as a Gradio web demo.",
+        desc: "Classifies legal documents -- motions, briefs, depositions, orders, exhibits -- using sentence embeddings and logistic regression. Fine-tuned transformer embeddings outperform TF-IDF baseline. Deployed as a Gradio web demo on HuggingFace.",
         tags: ["Python", "NLP", "scikit-learn", "Docker", "HuggingFace"],
         metric: "+19pt F1 over TF-IDF",
         github: "https://github.com/ziaulalam1/legalai",
         demo: "https://huggingface.co/spaces/ziaulalam1/ldc",
-        img: null
-      },
-      {
-        name: "Pre-Trade Analytics Dashboard",
-        desc: "Options pricing engine implementing Black-Scholes with full Greeks computation. React frontend for interactive scenario analysis and P&L attribution. Put-call parity verified to 1e-10 precision.",
-        tags: ["TypeScript", "React", "Black-Scholes", "Vite"],
-        metric: "p50=0.004ms | error < 0.0045",
-        github: "https://github.com/ziaulalam1/pre-trade-dashboard",
-        demo: "dashboard/",
         img: null
       },
       {
