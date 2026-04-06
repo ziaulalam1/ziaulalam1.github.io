@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ziaul Alam -- Software Engineer</title>
-  <meta name="description" content="10 projects. Every one ships with invariant tests and a benchmark. Backend systems, data pipelines, ML. NYC.">
+  <meta name="description" content="10+ projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
   <meta property="og:title" content="Ziaul Alam -- Software Engineer">
-  <meta property="og:description" content="10 projects with live demos, invariant tests, and benchmarks. Backend, data, ML. NYC.">
+  <meta property="og:description" content="10+ projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ziaulalam1.github.io">
 
@@ -167,7 +167,7 @@
 
     <header>
       <h1>Ziaul Alam</h1>
-      <p class="bio">Software engineer building backend systems, data pipelines, and ML tools. CS at LIU Brooklyn, graduating May 2026. Based in NYC.</p>
+      <p class="bio">Software developer building backend systems, data pipelines, and machine learning tools. B.S. Computer Science at LIU Brooklyn, graduating May 2026. Based in NYC.</p>
       <div class="header-links">
         <a href="https://github.com/ziaulalam1">GitHub</a>
         <a href="https://linkedin.com/in/ziaulalam">LinkedIn</a>
@@ -183,7 +183,7 @@
     </div>
 
     <div class="philosophy">
-      <p>Every project here ships with <strong>invariant tests</strong> and a <strong>benchmark</strong>. The invariant defines what must always be true. The benchmark proves it holds under load. Anyone can generate code that compiles. The harder question is: what property did you choose to guarantee, and how did you verify it?</p>
+      <p>Each of my projects has shipped with <strong>invariant tests</strong> and a <strong>benchmark</strong>. An invariant test states what properties or rules should always hold for a specific piece of logic; the benchmark verifies those same rules are being upheld when there is some level of load applied. Anyone can write code that compiles, but writing code that meets an expected behavior based on some defined criteria and verifying that behavior can be much more challenging.</p>
     </div>
 
     <!-- ══════════════ FEATURED: 3 deep dives ══════════════ -->
@@ -202,17 +202,17 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The problem</div>
-          <p>Options pricing libraries are easy to write and hard to trust. Most implementations get the happy path right but silently produce wrong Greeks under edge conditions -- deep out-of-the-money, near-zero expiry, extreme volatility. The errors compound when you build scenario analysis or P&L attribution on top.</p>
+          <p>It is easy to implement an options pricing library, but it is difficult to make sure that what you implemented is correct. Most implementations handle the common case correctly, but they do not handle edge cases. These edge cases occur when there are specific combinations of input values that result in incorrect outputs -- deep out-of-the-money options, near-zero expiry, or extreme volatility. When these edge cases occur, the errors that were introduced into the pricing model accumulate further when creating a P&L attribution or scenario analysis based upon them.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>Instead of testing outputs against a textbook table (which only covers a few cases), I verified put-call parity as a structural invariant -- it must hold to 1e-10 for every combination of inputs. If parity breaks, the entire pricing model is wrong. This catches classes of bugs that example-based tests miss. I also built the engine to run client-side so the demo works without a backend -- the math is the same, the deployment is simpler.</p>
+          <p>Rather than compare outputs against a textbook reference table (therefore only covering a limited number of scenarios), I validated put-call parity as a structural property -- it must hold to 1e-10 for every combination of inputs. If put-call parity is violated, then the entire option pricing model has failed. Using this method captures classes of bugs that reference tables cannot. I also designed the application to run client-side so the demo works without a backend server -- the math is the same, the deployment is simpler.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>The current model assumes constant volatility. Real options markets have a volatility surface. Adding surface interpolation and re-running the parity check across the surface would be the next step -- same verification principle, harder problem.</p>
+          <p>Assuming constant volatility is unrealistic. Options markets have a volatility surface where volatility varies depending upon strikes and time-to-expiration. One possible extension would be to add surface interpolation and run another round of parity validations across each point on the volatility surface. The verification principle remains the same, but the problem becomes much harder.</p>
         </div>
 
         <div class="deep-meta">
@@ -238,17 +238,17 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The problem</div>
-          <p>In a delivery system, a dropped order is worse than a slow one. Naive routing assigns orders without checking dasher capacity or verifying uniqueness -- under concurrent load, orders get double-assigned or fall through entirely. The failure mode is silent: no error, just a missing delivery.</p>
+          <p>If an order is dropped during a delivery process, that is significantly worse than if an order took longer to complete. In most implementations, the routing algorithm does not check whether the dasher currently has sufficient capacity prior to assigning an order. Under heavy concurrent loads, some orders will either be double-assigned or simply drop off entirely. Since there are no obvious indicators of failure, such as exceptions being thrown, dropping off may go unnoticed.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I defined two invariants before writing any routing logic: every order must be assigned exactly once, and no dasher can exceed capacity. The 6 test suite runs those checks after every assignment round. The 1000-request benchmark isn't about showing speed -- it's about proving zero violations at scale. 1,211 req/s is a side effect of getting the data model right.</p>
+          <p>Prior to implementing any routing logic, I determined two key invariants. First, every order must be assigned exactly once. Second, no dasher can ever exceed capacity. The 6-test suite executes these checks immediately after every assignment round. The 1,000-request benchmark demonstrates the capability of executing zero violations at scale. Although 1,211 req/s represents a secondary benefit of getting the data model correct, demonstrating performance was never the primary focus of this effort.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>The current router is greedy (assign to least-loaded dasher). A cost-minimizing approach that accounts for dasher location and delivery distance would be more realistic. The invariants stay the same -- the routing strategy changes, the correctness guarantee doesn't.</p>
+          <p>The current routing algorithm uses a simple "least loaded" policy for selecting which dasher will receive an order. A cost-minimizing routing strategy would use both dasher location and delivery distance as factors. The invariants remain unchanged -- every order assigned exactly once and no dasher exceeds capacity -- but the routing strategy would create a more realistic simulation.</p>
         </div>
 
         <div class="deep-meta">
@@ -277,17 +277,17 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The problem</div>
-          <p>Anomaly detection on a mixed-scale fleet is a harder problem than it looks. A 5kW rooftop panel and a 500kW commercial array have completely different output profiles. A single threshold that works for the large asset is blind to faults on the small one. Naive monitoring on this fleet catches 0 out of 3 injected faults.</p>
+          <p>Determining anomalies within a fleet that includes solar panels of varying capacities is a much harder problem than it appears at first glance. A 5 kW rooftop panel and a 500 kW commercial array have completely different production profiles. Any single threshold value that effectively detects anomalies for larger assets will be blind to failures occurring on smaller ones. A naive monitoring system on this type of fleet detects 0 out of 3 artificially induced faults.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I segmented assets by capacity class before computing anomaly thresholds. Each segment gets its own baseline derived from its own distribution. The benchmark injects 3 known faults across the mixed fleet and compares segmented vs. naive detection. Segmented catches all 3 with a false positive rate of 0.003. Naive catches zero -- it's not slightly worse, it's completely blind.</p>
+          <p>I segmented the assets into capacity classes prior to calculating the anomaly threshold values. Each class had a unique baseline calculated using its own probability distribution. The benchmark injected 3 known faults throughout the diverse fleet and compared segmented versus naive detection methods. Segmented detected all 3 faults with a false positive rate of 0.003. Naive detected none -- it was not merely less effective; it was entirely ineffective.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>The current segmentation is manual (small vs. large). A clustering approach that discovers segments from the data would generalize better to fleets with three or more asset classes. The FPR benchmark should also run on seasonal data -- summer and winter profiles differ enough to change the thresholds.</p>
+          <p>While manually segmenting assets into small and large classes worked well for this particular implementation, future efforts could utilize clustering techniques to automatically determine how best to segment similar assets from dissimilar ones. The benchmark should also demonstrate FPR over seasonal variability -- winter and summer profiles vary sufficiently enough to affect what constitutes a valid anomaly detection threshold.</p>
         </div>
 
         <div class="deep-meta">
@@ -322,7 +322,7 @@
     const more = [
       {
         name: "Legal Document Classifier",
-        desc: "5-class legal doc classification using sentence embeddings. +19pt F1 over TF-IDF. Live Gradio demo on HuggingFace.",
+        desc: "Classifies legal documents into five categories based upon a sentence embedding model. +19pt F1 improvement compared to TF-IDF. Live Gradio demo available via HuggingFace.",
         tags: ["Python", "NLP", "scikit-learn", "Docker"],
         metric: "+19pt F1",
         github: "https://github.com/ziaulalam1/legalai",
@@ -330,7 +330,7 @@
       },
       {
         name: "Go Ride Request Simulator",
-        desc: "Concurrent ride-request state machine. Goroutines + channels enforce strict state ordering under contention.",
+        desc: "State machine simulator of concurrent ride requests. Goroutine and channel implementations strictly order states when there are multiple concurrent accesses.",
         tags: ["Go", "Goroutines", "Channels"],
         metric: "3/3 invariants",
         github: "https://github.com/ziaulalam1/go-ride-simulator",
@@ -338,7 +338,7 @@
       },
       {
         name: "Stat Arb Backtester",
-        desc: "Pairs trading z-score engine. 19 tests verify no lookahead bias, correct signals, bounded positions.",
+        desc: "Z-score engine for pairs trading. 19 test cases verify no lookahead bias, correct signals, and bounded position sizes.",
         tags: ["Python", "pandas", "NumPy"],
         metric: "0 lookahead",
         github: "https://github.com/ziaulalam1/stat-arb-backtester",
@@ -346,7 +346,7 @@
       },
       {
         name: "Security Risk Reporter",
-        desc: "800-event scoring pipeline. Six invariants: counts preserved, scores bounded [0,1], no silent drops.",
+        desc: "Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.",
         tags: ["Python", "pandas", "matplotlib"],
         metric: "106ms pipeline",
         github: "https://github.com/ziaulalam1/security-risk-reporter",
@@ -354,7 +354,7 @@
       },
       {
         name: "Integration Onboarding Monitor",
-        desc: "Schema gate API. 100% of malformed payloads rejected before they reach the database.",
+        desc: "API that acts as a schema gate. 100% of malformed payloads are rejected prior to being processed by the database.",
         tags: ["Python", "FastAPI", "pytest"],
         metric: "67.3 req/s",
         github: "https://github.com/ziaulalam1/integration-onboarding-monitor",
@@ -362,7 +362,7 @@
       },
       {
         name: "Centerbridge Webhook Relay",
-        desc: "Append-only audit log with SHA-256 checksums. Async delivery, retries, k6 spike testing.",
+        desc: "Append-only audit log utilizing SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.",
         tags: ["Python", "FastAPI", "PostgreSQL"],
         metric: "200+ RPS",
         github: "https://github.com/ziaulalam1/Centerbridge",
@@ -370,7 +370,7 @@
       },
       {
         name: "Recon-Toolkit",
-        desc: "CSV reconciliation CLI for fintech ops. PK matching, exception labeling, audit trails.",
+        desc: "CSV reconciliation CLI for fintech ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails.",
         tags: ["Python", "CLI", "pandas"],
         metric: "full audit trail",
         github: "https://github.com/ziaulalam1/recon-toolkit",
