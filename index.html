@@ -322,9 +322,9 @@
     const more = [
       {
         name: "Legal Document Classifier",
-        desc: "Classifies legal documents into five categories based upon a sentence embedding model. +19pt F1 improvement compared to TF-IDF. Live Gradio demo available via HuggingFace.",
-        tags: ["Python", "NLP", "scikit-learn", "Docker"],
-        metric: "+19pt F1",
+        desc: "Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review. Thresholds calibrated to the model's empirical behavior.",
+        tags: ["Python", "NLP", "scikit-learn", "Validation"],
+        metric: "5 invariants | 88% clear",
         github: "https://github.com/ziaulalam1/legalai",
         demo: "https://huggingface.co/spaces/ziaulalam1/ldc"
       },
