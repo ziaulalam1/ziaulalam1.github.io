@@ -709,43 +709,66 @@ function drawNode(ctx, svc, w, h) {
   const nx = x - NODE_W / 2;
   const ny = y - NODE_H / 2;
   const isSelected = svc.id === state.selected;
+  const isDown = svc.health === 'down';
+  const isDegraded = svc.health === 'degraded';
 
-  // Node background
-  ctx.fillStyle = C.node;
-  roundRect(ctx, nx, ny, NODE_W, NODE_H, NODE_R);
-  ctx.fill();
+  // Health-based border color (always visible, not hidden by selection)
+  const healthColor = isDown ? C.red : isDegraded ? C.yellow : C.green;
 
-  // Border color by health
-  const borderColor = svc.health === 'healthy' ? C.green :
-                       svc.health === 'degraded' ? C.yellow : C.red;
-  ctx.strokeStyle = isSelected ? C.amber : borderColor;
-  ctx.lineWidth = isSelected ? 2 : 1;
-  roundRect(ctx, nx, ny, NODE_W, NODE_H, NODE_R);
-  ctx.stroke();
-
-  // Glow for selected
-  if (isSelected) {
-    ctx.shadowColor = C.amber;
-    ctx.shadowBlur = 8;
+  // Pulsing glow for faulted nodes
+  if (isDown) {
+    const pulse = 0.4 + 0.6 * Math.abs(Math.sin(Date.now() / 300));
+    ctx.shadowColor = C.red;
+    ctx.shadowBlur = 6 + pulse * 10;
+    ctx.strokeStyle = C.red;
+    ctx.lineWidth = 2;
     roundRect(ctx, nx, ny, NODE_W, NODE_H, NODE_R);
     ctx.stroke();
     ctx.shadowBlur = 0;
   }
 
+  // Node background
+  ctx.fillStyle = isDown ? '#1a0808' : isDegraded ? '#1a1408' : C.node;
+  roundRect(ctx, nx, ny, NODE_W, NODE_H, NODE_R);
+  ctx.fill();
+
+  // Border: health color always, thicker if selected
+  ctx.strokeStyle = healthColor;
+  ctx.lineWidth = isSelected ? 2 : 1;
+  roundRect(ctx, nx, ny, NODE_W, NODE_H, NODE_R);
+  ctx.stroke();
+
+  // Selection indicator: outer amber ring (separate from health border)
+  if (isSelected) {
+    ctx.shadowColor = C.amber;
+    ctx.shadowBlur = 10;
+    ctx.strokeStyle = C.amber;
+    ctx.lineWidth = 1;
+    ctx.globalAlpha = 0.6;
+    roundRect(ctx, nx - 4, ny - 4, NODE_W + 8, NODE_H + 8, NODE_R + 2);
+    ctx.stroke();
+    ctx.shadowBlur = 0;
+    ctx.globalAlpha = 1;
+  }
+
   // Service name
-  ctx.fillStyle = isSelected ? C.amber : '#999';
+  ctx.fillStyle = isDown ? C.red : isSelected ? C.amber : '#999';
   ctx.font = '9px "SF Mono", "Fira Code", monospace';
   ctx.textAlign = 'center';
   ctx.textBaseline = 'middle';
   ctx.fillText(svc.short, x, y - 5);
 
-  // Health dot
+  // Health dot (pulsing when down)
   ctx.beginPath();
-  ctx.arc(x, y + 8, 3, 0, Math.PI * 2);
-  ctx.fillStyle = borderColor;
-  if (svc.health === 'down') {
+  if (isDown) {
+    const dotPulse = 0.3 + 0.7 * Math.abs(Math.sin(Date.now() / 250));
+    ctx.arc(x, y + 8, 3 + dotPulse, 0, Math.PI * 2);
     ctx.shadowColor = C.red;
-    ctx.shadowBlur = 6;
+    ctx.shadowBlur = 8;
+    ctx.fillStyle = C.red;
+  } else {
+    ctx.arc(x, y + 8, 3, 0, Math.PI * 2);
+    ctx.fillStyle = healthColor;
   }
   ctx.fill();
   ctx.shadowBlur = 0;
