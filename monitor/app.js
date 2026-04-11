@@ -568,24 +568,22 @@ function cacheDom() {
 }
 
 // ---- Canvas sizing (retina-aware) ----
-// Uses Math.round on both assignment and comparison to prevent
-// resize-every-frame loop (canvas.width truncates floats to int,
-// so raw float comparison always mismatches).
+// CSS handles display size (position:absolute + 100% fill).
+// JS only sets the pixel buffer to match, for sharp rendering.
+// Never sets style.width/height from JS -- that fights CSS layout.
 function sizeCanvas(canvas) {
   const dpr = window.devicePixelRatio || 1;
-  const rect = canvas.parentElement.getBoundingClientRect();
-  const targetW = Math.round(rect.width * dpr);
-  const targetH = Math.round(rect.height * dpr);
-  if (targetW < 1 || targetH < 1) return { w: 0, h: 0 };
-  if (canvas.width !== targetW || canvas.height !== targetH) {
-    canvas.width = targetW;
-    canvas.height = targetH;
-    canvas.style.width = rect.width + 'px';
-    canvas.style.height = rect.height + 'px';
-    const ctx = canvas.getContext('2d');
-    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  const w = canvas.clientWidth;
+  const h = canvas.clientHeight;
+  const bufW = Math.round(w * dpr);
+  const bufH = Math.round(h * dpr);
+  if (bufW < 1 || bufH < 1) return { w: 0, h: 0 };
+  if (canvas.width !== bufW || canvas.height !== bufH) {
+    canvas.width = bufW;
+    canvas.height = bufH;
+    canvas.getContext('2d').setTransform(dpr, 0, 0, dpr, 0, 0);
   }
-  return { w: rect.width, h: rect.height };
+  return { w, h };
 }
 
 // ---- Status bar ----
