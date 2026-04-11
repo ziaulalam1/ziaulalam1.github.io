@@ -176,10 +176,10 @@
     </header>
 
     <div class="stats">
-      <div class="stat"><span class="stat-number">10</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number">11</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
-      <div class="stat"><span class="stat-number">2</span><span class="stat-label">Live demos</span></div>
+      <div class="stat"><span class="stat-number">3</span><span class="stat-label">Live demos</span></div>
     </div>
 
     <div class="philosophy">
@@ -190,7 +190,43 @@
     <div class="featured">
       <p class="section-label green">Featured</p>
 
-      <!-- 1. Pre-Trade Dashboard -->
+      <!-- 1. Distributed Systems Health Monitor -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Distributed Systems Health Monitor</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/distributed-systems-monitor">GitHub</a>
+            <a class="demo" href="monitor/">Live demo</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>When a distributed system has dozens of services communicating through message queues, failures in one service can cascade across the entire architecture. Most monitoring dashboards show metrics after the fact. Understanding how a system behaves during failure, and verifying that resilience patterns like circuit breakers actually work, requires seeing the system in motion.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>Rather than building a static metrics viewer, I built an interactive simulation that models 6 services with realistic failure modes. The circuit breaker implementation follows the standard state machine (CLOSED/OPEN/HALF_OPEN) with exponential backoff and jitter on recovery to prevent thundering herd. The fault injection feature lets you trigger a failure and watch the system respond in real-time. The invariant: when a circuit breaker is OPEN, zero calls are forwarded to the degraded service.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">What I'd change</div>
+          <p>The simulation uses client-side generated data with a Poisson model that breaks down during correlated failures. A production version would consume a real Kafka topic or OpenTelemetry stream. Client-side simulation also cannot distinguish "service is down" from "network between us and service is down," which is the most dangerous ambiguity in real distributed systems. A production monitor would need split-brain detection via consensus protocol integration.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Canvas API</span>
+            <span class="tag">Circuit Breaker</span>
+          </div>
+          <span class="metric">0 calls forwarded when OPEN | 6 services</span>
+        </div>
+        <div class="invariant">circuit breaker never allows calls when OPEN, every message delivered or explicitly rejected</div>
+      </div>
+
+      <!-- 2. Pre-Trade Analytics Dashboard -->
       <div class="deep">
         <div class="deep-top">
           <h2>Pre-Trade Analytics Dashboard</h2>
@@ -227,7 +263,7 @@
         <div class="invariant">put-call parity holds for every input combination, not just textbook examples</div>
       </div>
 
-      <!-- 2. Delivery Order Router -->
+      <!-- 3. Delivery Order Router -->
       <div class="deep">
         <div class="deep-top">
           <h2>Delivery Order Router</h2>
@@ -266,7 +302,7 @@
         </div>
       </div>
 
-      <!-- 3. DG Portfolio Monitor -->
+      <!-- 4. DG Portfolio Monitor -->
       <div class="deep">
         <div class="deep-top">
           <h2>Distributed Generation Portfolio Monitor</h2>
