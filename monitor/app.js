@@ -568,15 +568,23 @@ function cacheDom() {
 }
 
 // ---- Canvas sizing (retina-aware) ----
+// Uses Math.round on both assignment and comparison to prevent
+// resize-every-frame loop (canvas.width truncates floats to int,
+// so raw float comparison always mismatches).
 function sizeCanvas(canvas) {
   const dpr = window.devicePixelRatio || 1;
   const rect = canvas.parentElement.getBoundingClientRect();
-  canvas.width = rect.width * dpr;
-  canvas.height = rect.height * dpr;
-  canvas.style.width = rect.width + 'px';
-  canvas.style.height = rect.height + 'px';
-  const ctx = canvas.getContext('2d');
-  ctx.scale(dpr, dpr);
+  const targetW = Math.round(rect.width * dpr);
+  const targetH = Math.round(rect.height * dpr);
+  if (targetW < 1 || targetH < 1) return { w: 0, h: 0 };
+  if (canvas.width !== targetW || canvas.height !== targetH) {
+    canvas.width = targetW;
+    canvas.height = targetH;
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+    const ctx = canvas.getContext('2d');
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
   return { w: rect.width, h: rect.height };
 }
 
@@ -604,19 +612,8 @@ const NODE_H = 36;
 const NODE_R = 4;
 
 function renderTopology() {
-  // Dynamic resize: ensure canvas matches its container
-  const dpr = window.devicePixelRatio || 1;
-  const rect = dom.topoCanvas.parentElement.getBoundingClientRect();
-  if (dom.topoCanvas.width !== Math.round(rect.width * dpr) ||
-      dom.topoCanvas.height !== Math.round(rect.height * dpr)) {
-    dom.topoCanvas.width = rect.width * dpr;
-    dom.topoCanvas.height = rect.height * dpr;
-    dom.topoCanvas.style.width = rect.width + 'px';
-    dom.topoCanvas.style.height = rect.height + 'px';
-    dom.topoCtx.scale(dpr, dpr);
-  }
-  const w = rect.width;
-  const h = rect.height;
+  const { w, h } = sizeCanvas(dom.topoCanvas);
+  if (w < 1 || h < 1) return;
   const ctx = dom.topoCtx;
   ctx.clearRect(0, 0, w, h);
 
@@ -847,22 +844,9 @@ function avg(arr) {
 
 // ---- Latency chart ----
 function renderLatencyChart() {
-  const canvas = dom.latChart;
-  const rect = canvas.parentElement.getBoundingClientRect();
-  const dpr = window.devicePixelRatio || 1;
-  const w = rect.width;
-  const h = rect.height;
-
-  // Only resize if needed
-  if (canvas.width !== w * dpr || canvas.height !== h * dpr) {
-    canvas.width = w * dpr;
-    canvas.height = h * dpr;
-    canvas.style.width = w + 'px';
-    canvas.style.height = h + 'px';
-  }
-
+  const { w, h } = sizeCanvas(dom.latChart);
+  if (w < 1 || h < 1) return;
   const ctx = dom.latCtx;
-  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
   ctx.clearRect(0, 0, w, h);
 
   const key = state.selected || '_system';
@@ -997,13 +981,17 @@ function renderCircuitBreaker() {
 // ============================================================
 
 function frame() {
-  simulationTick();
-  renderStatusBar();
-  renderTopology();
-  renderMetrics();
-  renderLatencyChart();
-  renderEventStream();
-  renderCircuitBreaker();
+  try {
+    simulationTick();
+    renderStatusBar();
+    renderTopology();
+    renderMetrics();
+    renderLatencyChart();
+    renderEventStream();
+    renderCircuitBreaker();
+  } catch (e) {
+    console.error('Frame error:', e);
+  }
   requestAnimationFrame(frame);
 }
 
@@ -1013,10 +1001,6 @@ function frame() {
 
 function init() {
   cacheDom();
-
-  // Size canvases
-  sizeCanvas(dom.topoCanvas);
-  sizeCanvas(dom.latChart);
 
   // Event listeners
   dom.topoCanvas.addEventListener('click', handleTopoClick);
@@ -1046,9 +1030,18 @@ function init() {
   }
   sampleMetricsForChart();
 
-  // Start
   addStreamEvent(Date.now(), 'SYSTEM', 'INFO', 'Monitor initialized -- 6 services online');
-  requestAnimationFrame(frame);
+
+  // Defer first frame until layout is computed.
+  // Double-rAF ensures the browser has completed at least one
+  // layout pass so canvas parent elements have correct sizes.
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      sizeCanvas(dom.topoCanvas);
+      sizeCanvas(dom.latChart);
+      frame();
+    });
+  });
 }
 
 document.addEventListener('DOMContentLoaded', init);
