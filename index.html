@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ziaul Alam -- Software Engineer</title>
-  <meta name="description" content="10+ projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
+  <meta name="description" content="12 projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
   <meta property="og:title" content="Ziaul Alam -- Software Engineer">
-  <meta property="og:description" content="10+ projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
+  <meta property="og:description" content="12 projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ziaulalam1.github.io">
 
@@ -190,7 +190,43 @@
     <div class="featured">
       <p class="section-label green">Featured</p>
 
-      <!-- 1. Distributed Systems Health Monitor -->
+      <!-- 1. Order Book Engine -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Order Book Engine</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/order-book-engine">GitHub</a>
+            <a class="demo" href="orderbook/">Live demo</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>Every stock exchange ensures that orders are executed according to price-time priority. An order that is best priced will execute first, and when there are two or more orders of equal pricing, the earlier order is executed. This is the assurance which keeps the markets free from unfairness. When it is violated, someone overpaid or waited longer than they should have.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>I created a matching engine that can be proven to maintain price-time priority by using five invariant tests, and also by utilizing a real-time view of the three things a trader typically examines: Level II depth, the depth chart, and the trade tape. By pressing the Market Impact button, a 500 quantity market order is fired into the book to show how a large order sweeps through price levels, consumes liquidity and moves the price. This is why we see slippage on trades.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">What I'd change</div>
+          <p>The simulator runs in JavaScript. A production quality matching engine would require lock-free data structures so that multiple traders could submit their orders concurrently. It would also require kernel bypass to avoid having to pass through an operating system's network stack, and FIX protocol for submitting standard orders to exchanges. The order flow generator is simplified. Real order flow has fat tails, volatility clustering, and informed versus uninformed trader segmentation.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">Canvas API</span>
+            <span class="tag">Market Microstructure</span>
+          </div>
+          <span class="metric">1.1M orders/sec | 5/5 invariants</span>
+        </div>
+        <div class="invariant">price-time priority on every match, no order executes at worse price than its limit</div>
+      </div>
+
+      <!-- 2. Distributed Systems Health Monitor -->
       <div class="deep">
         <div class="deep-top">
           <h2>Distributed Systems Health Monitor</h2>
