@@ -613,7 +613,9 @@ function renderTopology() {
   const { w, h } = sizeCanvas(dom.topoCanvas);
   if (w < 1 || h < 1) return;
   const ctx = dom.topoCtx;
-  ctx.clearRect(0, 0, w, h);
+  // Guard against GPU context loss (Chrome under memory pressure)
+  if (!ctx || ctx.isContextLost?.()) return;
+  try { ctx.clearRect(0, 0, w, h); } catch(e) { return; }
 
   // Draw connections
   state.services.forEach(svc => {
