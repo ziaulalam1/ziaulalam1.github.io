@@ -176,7 +176,7 @@
     </header>
 
     <div class="stats">
-      <div class="stat"><span class="stat-number">11</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number">12</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">3</span><span class="stat-label">Live demos</span></div>
@@ -226,7 +226,43 @@
         <div class="invariant">circuit breaker never allows calls when OPEN, every message delivered or explicitly rejected</div>
       </div>
 
-      <!-- 2. Pre-Trade Analytics Dashboard -->
+      <!-- 2. Raft KV Store -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Raft Consensus KV Store</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/raft-kv">GitHub</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>When you implement a consensus protocol from a paper, there is no obvious way to tell whether your implementation is correct. The paper describes what the algorithm must do, but the concurrent edge cases -- split votes, stale RPCs carrying old term numbers, followers receiving entries out of order -- do not surface as exceptions. They show up as invariant violations that only appear under adversarial timing, and most test suites never exercise those paths.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>I defined the five Raft safety properties as executable tests before writing any replication logic: Election Safety, Log Matching, Leader Completeness, Quorum (minority partition cannot elect), and Convergence after partition heal. Every test runs with the Go race detector. Passing go test -race means the concurrent code is correct under Go's memory model -- not just "it works when I run it." The in-process test cluster intercepts messages at the transport layer, so I can inject partitions and drop specific RPCs without port allocation flakiness. The HTTP transport and the test transport implement the same interface, so the Raft node code is identical in both modes.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">What I'd change</div>
+          <p>Each node keeps its log in memory. A node that crashes loses its log and must catch up from the leader on restart. Adding a persistent write-ahead log with fsync after each entry and CRC32 checksums is the most important missing piece. Without it, no crash scenario is recoverable, which means the safety properties only hold as long as every node stays up -- the one condition a consensus protocol is specifically designed to not require.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">Go</span>
+            <span class="tag">Raft</span>
+            <span class="tag">Consensus</span>
+            <span class="tag">Distributed Systems</span>
+          </div>
+          <span class="metric">~87,000 ops/sec | 5/5 invariants | race-clean</span>
+        </div>
+        <div class="invariant">at most one leader per term, committed entries present in every future leader's log</div>
+      </div>
+
+      <!-- 3. Pre-Trade Analytics Dashboard -->
       <div class="deep">
         <div class="deep-top">
           <h2>Pre-Trade Analytics Dashboard</h2>
