@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Ziaul Alam -- Software Engineer</title>
-  <meta name="description" content="12 projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
+  <meta name="description" content="13 projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
   <meta property="og:title" content="Ziaul Alam -- Software Engineer">
-  <meta property="og:description" content="12 projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
+  <meta property="og:description" content="13 projects (live demos) with invariant tests and benchmarking. Data/backend/ML. NYC.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://ziaulalam1.github.io">
 
@@ -176,7 +176,7 @@
     </header>
 
     <div class="stats">
-      <div class="stat"><span class="stat-number">12</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number">13</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">3</span><span class="stat-label">Live demos</span></div>
@@ -273,17 +273,17 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The problem</div>
-          <p>When you implement a consensus protocol from a paper, there is no obvious way to tell whether your implementation is correct. The paper describes what the algorithm must do, but the concurrent edge cases -- split votes, stale RPCs carrying old term numbers, followers receiving entries out of order -- do not surface as exceptions. They show up as invariant violations that only appear under adversarial timing, and most test suites never exercise those paths.</p>
+          <p>When implementing a consensus protocol from a paper, there is usually no clear way to determine if your implementation is correct. A paper outlines the requirements for the algorithm in terms of its behavior, but it does not address how the potential edge cases of concurrent execution (split vote, stale RPC with an older term number, etc.) will be detected by exception handling. Instead these are represented as invariant failures which would only manifest during adversarial timing; they also are rarely tested through test suites.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I defined the five Raft safety properties as executable tests before writing any replication logic: Election Safety, Log Matching, Leader Completeness, Quorum (minority partition cannot elect), and Convergence after partition heal. Every test runs with the Go race detector. Passing go test -race means the concurrent code is correct under Go's memory model -- not just "it works when I run it." The in-process test cluster intercepts messages at the transport layer, so I can inject partitions and drop specific RPCs without port allocation flakiness. The HTTP transport and the test transport implement the same interface, so the Raft node code is identical in both modes.</p>
+          <p>Before implementing a single line of replication logic, I wrote five Raft safety property tests: Election Safety, Log Matching, Leader Completeness, Quorum (a minority partition cannot elect a leader), and Convergence after a partition heals. Each test runs with the Go race detector, and passing via go test -race verifies that the concurrent code is safe under Go's memory model. My in-process test cluster captures communications at the transport level, allowing me to simulate network partitions and drop specific RPCs without worrying about port allocation. Because the HTTP transport and test transport share the same interface, the same Raft node codebase is used for both.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>Each node keeps its log in memory. A node that crashes loses its log and must catch up from the leader on restart. Adding a persistent write-ahead log with fsync after each entry and CRC32 checksums is the most important missing piece. Without it, no crash scenario is recoverable, which means the safety properties only hold as long as every node stays up -- the one condition a consensus protocol is specifically designed to not require.</p>
+          <p>All nodes keep their logs in memory, so when a node fails, its log data is lost. Adding a persistent write-ahead log with CRC32 checksums and fsync after each entry is the most important missing piece. Without it, crash recovery requires catching up from the leader from scratch, and the safety properties only hold as long as every node stays up. That is exactly the condition a consensus protocol is designed to handle.</p>
         </div>
 
         <div class="deep-meta">
