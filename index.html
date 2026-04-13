@@ -183,7 +183,7 @@
     </div>
 
     <div class="philosophy">
-      <p>Each of my projects has shipped with <strong>invariant tests</strong> and a <strong>benchmark</strong>. An invariant test states what properties or rules should always hold for a specific piece of logic; the benchmark verifies those same rules are being upheld when there is some level of load applied. Anyone can write code that compiles, but writing code that meets an expected behavior based on some defined criteria and verifying that behavior can be much more challenging.</p>
+      <p>Each of my projects has shipped with <strong>invariant tests</strong> and a <strong>benchmark</strong>. An invariant test states what properties or rules should always hold for a specific piece of logic; the benchmark verifies those same rules are being upheld when there is some level of load applied. Anyone can write code that compiles, but verifying that it actually holds up under load is a harder problem.</p>
     </div>
 
     <!-- ══════════════ FEATURED: 3 deep dives ══════════════ -->
@@ -207,7 +207,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I created a matching engine that can be proven to maintain price-time priority by using five invariant tests, and also by utilizing a real-time view of the three things a trader typically examines: Level II depth, the depth chart, and the trade tape. By pressing the Market Impact button, a 500 quantity market order is fired into the book to show how a large order sweeps through price levels, consumes liquidity and moves the price. This is why we see slippage on trades.</p>
+          <p>I created a matching engine that can be proven to maintain price-time priority by using five invariant tests, and also by using a real-time view of the three things a trader typically examines: Level II depth, the depth chart, and the trade tape. By pressing the Market Impact button, a 500 quantity market order is fired into the book to show how a large order sweeps through price levels, consumes liquidity and moves the price. This is why we see slippage on trades.</p>
         </div>
 
         <div class="deep-section">
@@ -248,7 +248,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>The simulation uses client-side generated data with a Poisson model that breaks down during correlated failures. A production version would consume a real Kafka topic or OpenTelemetry stream. Client-side simulation also cannot distinguish "service is down" from "network between us and service is down," which is the most dangerous ambiguity in real distributed systems. A production monitor would need split-brain detection via consensus protocol integration.</p>
+          <p>The Poisson model I used for generating traffic breaks down during correlated failures -- real distributed systems don't fail independently. Feeding from a Kafka topic or OpenTelemetry stream would fix that. The bigger gap: client-side simulation can't distinguish "service is down" from "network between us and service is down," which is the most dangerous ambiguity in production. Handling that requires split-brain detection through consensus protocol integration.</p>
         </div>
 
         <div class="deep-meta">
@@ -315,7 +315,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>Rather than compare outputs against a textbook reference table (therefore only covering a limited number of scenarios), I validated put-call parity as a structural property -- it must hold to 1e-10 for every combination of inputs. If put-call parity is violated, then the entire option pricing model has failed. Using this method captures classes of bugs that reference tables cannot. I also designed the application to run client-side so the demo works without a backend server -- the math is the same, the deployment is simpler.</p>
+          <p>A textbook reference table only covers the scenarios the author chose. I validated put-call parity as a structural property instead -- it must hold to 1e-10 for every combination of inputs. If put-call parity is violated, then the entire option pricing model has failed. Using this method captures classes of bugs that reference tables cannot. I also designed the application to run client-side so the demo works without a backend server -- the math is the same, the deployment is simpler.</p>
         </div>
 
         <div class="deep-section">
@@ -346,17 +346,17 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The problem</div>
-          <p>If an order is dropped during a delivery process, that is significantly worse than if an order took longer to complete. In most implementations, the routing algorithm does not check whether the dasher currently has sufficient capacity prior to assigning an order. Under heavy concurrent loads, some orders will either be double-assigned or simply drop off entirely. Since there are no obvious indicators of failure, such as exceptions being thrown, dropping off may go unnoticed.</p>
+          <p>If an order is dropped during a delivery process, that is significantly worse than if an order took longer to complete. In most implementations, the routing algorithm does not check whether the dasher currently has capacity before assigning an order. Under heavy concurrent loads, some orders will either be double-assigned or simply drop off entirely. Since there are no obvious indicators of failure, such as exceptions being thrown, dropping off may go unnoticed.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>Prior to implementing any routing logic, I determined two key invariants. First, every order must be assigned exactly once. Second, no dasher can ever exceed capacity. The 6-test suite executes these checks immediately after every assignment round. The 1,000-request benchmark demonstrates the capability of executing zero violations at scale. Although 1,211 req/s represents a secondary benefit of getting the data model correct, demonstrating performance was never the primary focus of this effort.</p>
+          <p>Before writing any routing logic, I locked in two invariants. First, every order must be assigned exactly once. Second, no dasher can ever exceed capacity. The 6-test suite executes these checks immediately after every assignment round. The 1,000-request benchmark ran zero violations. The 1,211 req/s came from getting the data model right, not from optimizing for speed.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>The current routing algorithm uses a simple "least loaded" policy for selecting which dasher will receive an order. A cost-minimizing routing strategy would use both dasher location and delivery distance as factors. The invariants remain unchanged -- every order assigned exactly once and no dasher exceeds capacity -- but the routing strategy would create a more realistic simulation.</p>
+          <p>Right now the router picks the least-loaded dasher, ignoring location entirely. A better version would factor in dasher distance and delivery radius to minimize total cost. The two invariants stay the same -- every order assigned exactly once, no dasher over capacity -- but the assignment quality improves.</p>
         </div>
 
         <div class="deep-meta">
@@ -390,12 +390,12 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I segmented the assets into capacity classes prior to calculating the anomaly threshold values. Each class had a unique baseline calculated using its own probability distribution. The benchmark injected 3 known faults throughout the diverse fleet and compared segmented versus naive detection methods. Segmented detected all 3 faults with a false positive rate of 0.003. Naive detected none -- it was not merely less effective; it was entirely ineffective.</p>
+          <p>I segmented the assets into capacity classes before calculating the anomaly thresholds. Each class had a unique baseline calculated using its own probability distribution. The benchmark injected 3 known faults throughout the diverse fleet and compared segmented versus naive detection methods. Segmented detected all 3 faults with a false positive rate of 0.003. Naive detected none -- it was not merely less effective; it was entirely ineffective.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>While manually segmenting assets into small and large classes worked well for this particular implementation, future efforts could utilize clustering techniques to automatically determine how best to segment similar assets from dissimilar ones. The benchmark should also demonstrate FPR over seasonal variability -- winter and summer profiles vary sufficiently enough to affect what constitutes a valid anomaly detection threshold.</p>
+          <p>Manually splitting assets into small and large classes worked here, but clustering would let the system find its own groupings as the fleet grows. The benchmark also needs seasonal coverage -- winter and summer production profiles are different enough to shift what counts as a real anomaly versus normal variation.</p>
         </div>
 
         <div class="deep-meta">
@@ -462,7 +462,7 @@
       },
       {
         name: "Integration Onboarding Monitor",
-        desc: "API that acts as a schema gate. 100% of malformed payloads are rejected prior to being processed by the database.",
+        desc: "API that acts as a schema gate. 100% of malformed payloads are rejected before they reach the database.",
         tags: ["Python", "FastAPI", "pytest"],
         metric: "67.3 req/s",
         github: "https://github.com/ziaulalam1/integration-onboarding-monitor",
@@ -470,7 +470,7 @@
       },
       {
         name: "Centerbridge Webhook Relay",
-        desc: "Append-only audit log utilizing SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.",
+        desc: "Append-only audit log using SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.",
         tags: ["Python", "FastAPI", "PostgreSQL"],
         metric: "200+ RPS",
         github: "https://github.com/ziaulalam1/Centerbridge",
