@@ -5,3 +5,6 @@
 node_modules/
 *.log
 
+CLAUDE.md
+INTERVIEW.md
+INTERVIEW_CHEATSHEET.md
