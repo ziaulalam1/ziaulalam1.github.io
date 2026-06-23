@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <!-- Background -->
+  <rect width="1200" height="630" fill="#0c0c0c"/>
+  <!-- Left accent bar -->
+  <rect x="0" y="0" width="4" height="630" fill="#5b8dee"/>
+  <!-- Subtle grid lines -->
+  <line x1="0" y1="420" x2="1200" y2="420" stroke="#1a1a1a" stroke-width="1"/>
+
+  <!-- Name -->
+  <text x="80" y="195" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif"
+        font-size="72" font-weight="700" fill="#e6e6e6" letter-spacing="-2">Ziaul Alam</text>
+
+  <!-- Tagline -->
+  <text x="80" y="255" font-family="-apple-system, BlinkMacSystemFont, sans-serif"
+        font-size="26" fill="#787878">Software developer · Backend · Data · ML · NYC</text>
+
+  <!-- Stats row -->
+  <text x="80" y="352" font-family="'SF Mono', 'Fira Code', 'Consolas', monospace"
+        font-size="48" font-weight="700" fill="#e6e6e6">13</text>
+  <text x="80" y="382" font-family="-apple-system, sans-serif" font-size="14"
+        fill="#787878" letter-spacing="2">PROJECTS</text>
+
+  <text x="230" y="352" font-family="'SF Mono', 'Fira Code', 'Consolas', monospace"
+        font-size="48" font-weight="700" fill="#e6e6e6">87+</text>
+  <text x="230" y="382" font-family="-apple-system, sans-serif" font-size="14"
+        fill="#787878" letter-spacing="2">TESTS PASSING</text>
+
+  <text x="430" y="352" font-family="'SF Mono', 'Fira Code', 'Consolas', monospace"
+        font-size="48" font-weight="700" fill="#34d399">4</text>
+  <text x="430" y="382" font-family="-apple-system, sans-serif" font-size="14"
+        fill="#787878" letter-spacing="2">LIVE DEMOS</text>
+
+  <text x="570" y="352" font-family="'SF Mono', 'Fira Code', 'Consolas', monospace"
+        font-size="48" font-weight="700" fill="#e6e6e6">5</text>
+  <text x="570" y="382" font-family="-apple-system, sans-serif" font-size="14"
+        fill="#787878" letter-spacing="2">LANGUAGES</text>
+
+  <!-- Invariant pill -->
+  <rect x="80" y="448" width="560" height="52" rx="8" fill="#1a1528" stroke="#2d2244" stroke-width="1"/>
+  <text x="106" y="481" font-family="'SF Mono', 'Fira Code', monospace"
+        font-size="19" fill="#6d5aad" font-weight="600">invariant:</text>
+  <text x="248" y="481" font-family="'SF Mono', 'Fira Code', monospace"
+        font-size="19" fill="#a78bfa">every project ships tested + benchmarked</text>
+
+  <!-- URL -->
+  <text x="80" y="578" font-family="'SF Mono', 'Fira Code', monospace"
+        font-size="24" fill="#5b8dee">ziaulalam1.github.io</text>
+  <text x="1120" y="578" font-family="-apple-system, sans-serif"
+        font-size="18" fill="#787878" text-anchor="end">github.com/ziaulalam1</text>
+</svg>

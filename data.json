@@ -1,11 +1,11 @@
 {
   "stats": {
-    "projects": 13,
+    "projects": 15,
     "tests": "87+",
     "languages": 5,
     "liveDemos": 4
   },
-  "lastUpdated": "2026-06-17",
+  "lastUpdated": "2026-06-23",
   "featured": [
     {
       "name": "Order Book Engine",
@@ -117,6 +117,22 @@
       "tags": ["Python", "CLI", "pandas"],
       "metric": "full audit trail",
       "github": "https://github.com/ziaulalam1/recon-toolkit",
+      "demo": null
+    },
+    {
+      "name": "Redis from Scratch",
+      "desc": "TCP server implementing the Redis wire protocol (RESP) in Rust. Nine stages: RESP parser, core commands, TTL expiry, concurrent clients (tokio), RDB persistence, replication, and Streams. Each stage has a named invariant and passes cargo test before moving on.",
+      "tags": ["Rust", "Systems", "Redis", "TCP"],
+      "metric": "9 stages | 1 invariant per stage",
+      "github": "https://github.com/ziaulalam1/redis-from-scratch",
+      "demo": null
+    },
+    {
+      "name": "Career Ops MCP",
+      "desc": "MCP server exposing a personal job-search workflow as queryable tools. Three Phase-1 tools: list open applications (flags overdue follow-ups), get full record for one company, list pending outreach emails. Rejected and archived rows are never surfaced — this is the named invariant.",
+      "tags": ["Python", "MCP", "FastMCP", "Automation"],
+      "metric": "3 tools | 1 invariant",
+      "github": "https://github.com/ziaulalam1/career-ops-mcp",
       "demo": null
     }
   ]

@@ -456,7 +456,116 @@
     <!-- ══════════════ COMPACT GRID: remaining 7 ══════════════ -->
     <div class="compact-section">
       <p class="section-label">More projects</p>
-      <div class="grid" id="grid"></div>
+      <div class="grid" id="grid" aria-label="More projects">
+    <article class="mini" aria-label="Legal Document Classifier project">
+      <h3>Legal Document Classifier</h3>
+      <div class="mini-desc">Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/legalai" aria-label="Legal Document Classifier GitHub repository">GitHub</a>
+          <a class="demo" href="https://huggingface.co/spaces/ziaulalam1/ldc">Demo</a>
+        </div>
+        <span class="metric">5 invariants | 88% clear</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">NLP</span><span class="tag">scikit-learn</span><span class="tag">Validation</span></div>
+    </article>
+    <article class="mini" aria-label="Go Ride Request Simulator project">
+      <h3>Go Ride Request Simulator</h3>
+      <div class="mini-desc">State machine simulator of concurrent ride requests. Goroutine and channel implementations strictly order states when there are multiple concurrent accesses.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/go-ride-simulator" aria-label="Go Ride Request Simulator GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">3/3 invariants</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Go</span><span class="tag">Goroutines</span><span class="tag">Channels</span></div>
+    </article>
+    <article class="mini" aria-label="Stat Arb Backtester project">
+      <h3>Stat Arb Backtester</h3>
+      <div class="mini-desc">Z-score engine for pairs trading. 19 test cases verify no lookahead bias, correct signals, and bounded position sizes.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/stat-arb-backtester" aria-label="Stat Arb Backtester GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">0 lookahead</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">NumPy</span></div>
+    </article>
+    <article class="mini" aria-label="Security Risk Reporter project">
+      <h3>Security Risk Reporter</h3>
+      <div class="mini-desc">Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/security-risk-reporter" aria-label="Security Risk Reporter GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">106ms pipeline</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">matplotlib</span></div>
+    </article>
+    <article class="mini" aria-label="Integration Onboarding Monitor project">
+      <h3>Integration Onboarding Monitor</h3>
+      <div class="mini-desc">API that acts as a schema gate. 100% of malformed payloads are rejected before they reach the database.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/integration-onboarding-monitor" aria-label="Integration Onboarding Monitor GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">67.3 req/s</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">pytest</span></div>
+    </article>
+    <article class="mini" aria-label="Centerbridge Webhook Relay project">
+      <h3>Centerbridge Webhook Relay</h3>
+      <div class="mini-desc">Append-only audit log using SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/Centerbridge" aria-label="Centerbridge Webhook Relay GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">200+ RPS</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span></div>
+    </article>
+    <article class="mini" aria-label="Recon-Toolkit project">
+      <h3>Recon-Toolkit</h3>
+      <div class="mini-desc">CSV reconciliation CLI for fintech ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/recon-toolkit" aria-label="Recon-Toolkit GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">full audit trail</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">pandas</span></div>
+    </article>
+    <article class="mini" aria-label="Redis from Scratch project">
+      <h3>Redis from Scratch</h3>
+      <div class="mini-desc">TCP server implementing the Redis wire protocol (RESP) in Rust. Nine stages: RESP parser, core commands, TTL expiry, concurrent clients (tokio), RDB persistence, replication, and Streams. Each stage has a named invariant and passes cargo test before moving on.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/redis-from-scratch" aria-label="Redis from Scratch GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">9 stages | 1 invariant per stage</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Rust</span><span class="tag">Systems</span><span class="tag">Redis</span><span class="tag">TCP</span></div>
+    </article>
+    <article class="mini" aria-label="Career Ops MCP project">
+      <h3>Career Ops MCP</h3>
+      <div class="mini-desc">MCP server exposing a personal job-search workflow as queryable tools. Three Phase-1 tools: list open applications (flags overdue follow-ups), get full record for one company, list pending outreach emails. Rejected and archived rows are never surfaced — this is the named invariant.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/career-ops-mcp" aria-label="Career Ops MCP GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">3 tools | 1 invariant</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">FastMCP</span><span class="tag">Automation</span></div>
+    </article>
+    </div>
     </div>
 
     </main>
@@ -467,103 +576,6 @@
 
   </div>
 
-  <script>
-    const more = [
-      {
-        name: "Legal Document Classifier",
-        desc: "Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review. Thresholds calibrated to the model's empirical behavior.",
-        tags: ["Python", "NLP", "scikit-learn", "Validation"],
-        metric: "5 invariants | 88% clear",
-        github: "https://github.com/ziaulalam1/legalai",
-        demo: "https://huggingface.co/spaces/ziaulalam1/ldc"
-      },
-      {
-        name: "Go Ride Request Simulator",
-        desc: "State machine simulator of concurrent ride requests. Goroutine and channel implementations strictly order states when there are multiple concurrent accesses.",
-        tags: ["Go", "Goroutines", "Channels"],
-        metric: "3/3 invariants",
-        github: "https://github.com/ziaulalam1/go-ride-simulator",
-        demo: null
-      },
-      {
-        name: "Stat Arb Backtester",
-        desc: "Z-score engine for pairs trading. 19 test cases verify no lookahead bias, correct signals, and bounded position sizes.",
-        tags: ["Python", "pandas", "NumPy"],
-        metric: "0 lookahead",
-        github: "https://github.com/ziaulalam1/stat-arb-backtester",
-        demo: null
-      },
-      {
-        name: "Security Risk Reporter",
-        desc: "Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.",
-        tags: ["Python", "pandas", "matplotlib"],
-        metric: "106ms pipeline",
-        github: "https://github.com/ziaulalam1/security-risk-reporter",
-        demo: null
-      },
-      {
-        name: "Integration Onboarding Monitor",
-        desc: "API that acts as a schema gate. 100% of malformed payloads are rejected before they reach the database.",
-        tags: ["Python", "FastAPI", "pytest"],
-        metric: "67.3 req/s",
-        github: "https://github.com/ziaulalam1/integration-onboarding-monitor",
-        demo: null
-      },
-      {
-        name: "Centerbridge Webhook Relay",
-        desc: "Append-only audit log using SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.",
-        tags: ["Python", "FastAPI", "PostgreSQL"],
-        metric: "200+ RPS",
-        github: "https://github.com/ziaulalam1/Centerbridge",
-        demo: null
-      },
-      {
-        name: "Recon-Toolkit",
-        desc: "CSV reconciliation CLI for fintech ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails.",
-        tags: ["Python", "CLI", "pandas"],
-        metric: "full audit trail",
-        github: "https://github.com/ziaulalam1/recon-toolkit",
-        demo: null
-      },
-      {
-        name: "Redis from Scratch",
-        desc: "TCP server implementing the Redis wire protocol (RESP) in Rust. Nine stages: RESP parser, core commands, TTL expiry, concurrent clients (tokio), RDB persistence, replication, and Streams. Each stage has a named invariant and passes cargo test before moving on.",
-        tags: ["Rust", "Systems", "Redis", "TCP"],
-        metric: "9 stages | 1 invariant per stage",
-        github: "https://github.com/ziaulalam1/redis-from-scratch",
-        demo: null
-      },
-      {
-        name: "Career Ops MCP",
-        desc: "MCP server exposing a personal job-search workflow as queryable tools. Three Phase-1 tools: list open applications (flags overdue follow-ups), get full record for one company, list pending outreach emails. Rejected and archived rows are never surfaced — this is the named invariant.",
-        tags: ["Python", "MCP", "FastMCP", "Automation"],
-        metric: "3 tools | 1 invariant",
-        github: "https://github.com/ziaulalam1/career-ops-mcp",
-        demo: null
-      }
-    ];
-
-    const grid = document.getElementById("grid");
-    more.forEach(p => {
-      const demoLink = p.demo
-        ? `<a class="demo" href="${p.demo}">Demo</a>`
-        : "";
-      const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join("");
-
-      grid.innerHTML += `
-        <div class="mini">
-          <h3>${p.name}</h3>
-          <div class="mini-desc">${p.desc}</div>
-          <div class="mini-meta">
-            <div class="mini-links">
-              <a href="${p.github}">GitHub</a>
-              ${demoLink}
-            </div>
-            <span class="metric">${p.metric}</span>
-          </div>
-          <div class="tags" style="margin-top:10px">${tags}</div>
-        </div>`;
-    });
-  </script>
+  <!-- Grid pre-rendered by build.mjs from data.json -->
 </body>
 </html>
