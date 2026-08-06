@@ -214,7 +214,7 @@
     </header>
 
     <div class="stats">
-      <div class="stat"><span class="stat-number">15</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number">11</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">4</span><span class="stat-label">Live demos</span></div>
@@ -265,42 +265,6 @@
         <div class="invariant">price-time priority on every match, no order executes at worse price than its limit</div>
       </div>
 
-      <!-- 2. Distributed Systems Health Monitor -->
-      <div class="deep">
-        <div class="deep-top">
-          <h2>Distributed Systems Health Monitor</h2>
-          <div class="deep-links">
-            <a class="gh" href="https://github.com/ziaulalam1/distributed-systems-monitor">GitHub</a>
-            <a class="demo" href="monitor/">Live demo</a>
-          </div>
-        </div>
-
-        <div class="deep-section">
-          <div class="deep-section-label">The problem</div>
-          <p>When a distributed system has dozens of services communicating through message queues, failures in one service can cascade across the entire architecture. Most monitoring dashboards show metrics after the fact. Understanding how a system behaves during failure, and verifying that resilience patterns like circuit breakers actually work, requires seeing the system in motion.</p>
-        </div>
-
-        <div class="deep-section">
-          <div class="deep-section-label">The decision</div>
-          <p>Rather than building a static metrics viewer, I built an interactive simulation that models 6 services with realistic failure modes. The circuit breaker implementation follows the standard state machine (CLOSED/OPEN/HALF_OPEN) with exponential backoff and jitter on recovery to prevent thundering herd. The fault injection feature lets you trigger a failure and watch the system respond in real-time. The invariant: when a circuit breaker is OPEN, zero calls are forwarded to the degraded service.</p>
-        </div>
-
-        <div class="deep-section">
-          <div class="deep-section-label">What I'd change</div>
-          <p>The Poisson model I used for generating traffic breaks down during correlated failures -- real distributed systems don't fail independently. Feeding from a Kafka topic or OpenTelemetry stream would fix that. The bigger gap: client-side simulation can't distinguish "service is down" from "network between us and service is down," which is the most dangerous ambiguity in production. Handling that requires split-brain detection through consensus protocol integration.</p>
-        </div>
-
-        <div class="deep-meta">
-          <div class="tags">
-            <span class="tag">JavaScript</span>
-            <span class="tag">Canvas API</span>
-            <span class="tag">Circuit Breaker</span>
-          </div>
-          <span class="metric">0 calls forwarded when OPEN | 6 services</span>
-        </div>
-        <div class="invariant">circuit breaker never allows calls when OPEN, every message delivered or explicitly rejected</div>
-      </div>
-
       <!-- 2. Raft KV Store -->
       <div class="deep">
         <div class="deep-top">
@@ -335,43 +299,6 @@
           <span class="metric">~87,000 ops/sec | 5/5 invariants | race-clean</span>
         </div>
         <div class="invariant">at most one leader per term, committed entries present in every future leader's log</div>
-      </div>
-
-      <!-- 3. Pre-Trade Analytics Dashboard -->
-      <div class="deep">
-        <div class="deep-top">
-          <h2>Pre-Trade Analytics Dashboard</h2>
-          <div class="deep-links">
-            <a class="gh" href="https://github.com/ziaulalam1/pre-trade-dashboard">GitHub</a>
-            <a class="demo" href="dashboard/">Live demo</a>
-          </div>
-        </div>
-
-        <div class="deep-section">
-          <div class="deep-section-label">The problem</div>
-          <p>It is easy to implement an options pricing library, but it is difficult to make sure that what you implemented is correct. Most implementations handle the common case correctly, but they do not handle edge cases. These edge cases occur when there are specific combinations of input values that result in incorrect outputs -- deep out-of-the-money options, near-zero expiry, or extreme volatility. When these edge cases occur, the errors that were introduced into the pricing model accumulate further when creating a P&L attribution or scenario analysis based upon them.</p>
-        </div>
-
-        <div class="deep-section">
-          <div class="deep-section-label">The decision</div>
-          <p>A textbook reference table only covers the scenarios the author chose. I validated put-call parity as a structural property instead -- it must hold to 1e-10 for every combination of inputs. If put-call parity is violated, then the entire option pricing model has failed. Using this method captures classes of bugs that reference tables cannot. I also designed the application to run client-side so the demo works without a backend server -- the math is the same, the deployment is simpler.</p>
-        </div>
-
-        <div class="deep-section">
-          <div class="deep-section-label">What I'd change</div>
-          <p>Assuming constant volatility is unrealistic. Options markets have a volatility surface where volatility varies depending upon strikes and time-to-expiration. One possible extension would be to add surface interpolation and run another round of parity validations across each point on the volatility surface. The verification principle remains the same, but the problem becomes much harder.</p>
-        </div>
-
-        <div class="deep-meta">
-          <div class="tags">
-            <span class="tag">TypeScript</span>
-            <span class="tag">React</span>
-            <span class="tag">Black-Scholes</span>
-            <span class="tag">Vite</span>
-          </div>
-          <span class="metric">put-call parity to 1e-10 | p50=0.004ms</span>
-        </div>
-        <div class="invariant">put-call parity holds for every input combination, not just textbook examples</div>
       </div>
 
       <!-- 3. Delivery Order Router -->
@@ -451,9 +378,73 @@
           <img src="img/dg-monitor.png" alt="FPR comparison: segmented monitoring vs naive on mixed-scale fleet" loading="lazy">
         </div>
       </div>
+      <!-- 5. Integration Onboarding Monitor -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Integration Onboarding Monitor</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/integration-onboarding-monitor">GitHub</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>Malformed integration payloads that reach the database cause cascading failures downstream. Bad data propagates through every system that reads from it, and by the time someone notices, the root cause is buried under layers of dependent failures. The break is silent at exactly the point where it would have been cheapest to catch.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>I made the schema gate the single enforcement point. Every incoming payload is validated before any database write, and nothing bypasses it. Invalid payloads are rejected with a structured error response and logged as JSON per customer, so every rejection is traceable to the customer that sent it. Fifteen tests cover the invariants that matter: malformed payloads never reach the database, well-formed payloads pass through unmodified, one customer&rsquo;s bad payload cannot affect another&rsquo;s, and every rejection produces a log entry carrying its customer_id. The benchmark ran 1,000 requests across 20 customers at 67.3 req/s, p50 14.654 ms and p95 18.471 ms.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">pytest</span>
+          </div>
+          <span class="metric">67.3 req/s | p95 18.471ms | 15 tests</span>
+        </div>
+        <div class="invariant">no malformed payload reaches the database, and every rejection is logged with its customer_id</div>
+        <div class="deep-img">
+          <img src="img/onboarding-monitor.png" alt="Integration Onboarding Monitor: throughput benchmark over 1,000 requests" loading="lazy">
+        </div>
+      </div>
+
+      <!-- 6. Webhook Relay & Event Inbox -->
+      <div class="deep">
+        <div class="deep-top">
+          <h2>Webhook Relay &amp; Event Inbox</h2>
+          <div class="deep-links">
+            <a class="gh" href="https://github.com/ziaulalam1/Centerbridge">GitHub</a>
+          </div>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The problem</div>
+          <p>The gap between a packet being sent and a packet being confirmed received is something most application-layer systems take for granted. An event that is accepted and then quietly dropped leaves no trace, and the caller has already been told it succeeded. A downstream consumer that processes an event twice, or misses one entirely, fails silently in a way that is hard to trace back to its origin.</p>
+        </div>
+
+        <div class="deep-section">
+          <div class="deep-section-label">The decision</div>
+          <p>Every event is written to PostgreSQL before the acknowledgement goes back to the caller, so nothing is accepted and then discarded. Deduplication is keyed on the source and the idempotency key, which makes a retried delivery safe to send. The delivery worker retries with exponential backoff, doubling the interval on each consecutive failure and dead-lettering after ten attempts. The audit log is append-only and each delivery outcome gets its own row, because modifying delivery records after the fact would destroy the history of what actually happened. Rate limiting uses a token bucket rather than a fixed window, since a fixed window lets bursts through at the boundaries while a bucket refills continuously.</p>
+        </div>
+
+        <div class="deep-meta">
+          <div class="tags">
+            <span class="tag">Python</span>
+            <span class="tag">FastAPI</span>
+            <span class="tag">PostgreSQL</span>
+            <span class="tag">k6</span>
+          </div>
+          <span class="metric">idempotent | append-only audit log | dead-letters at 10 attempts</span>
+        </div>
+        <div class="invariant">every event is persisted before the 202 returns, and a repeated idempotency key never creates a second row</div>
+      </div>
+
     </div>
 
-    <!-- ══════════════ COMPACT GRID: remaining 7 ══════════════ -->
+    <!-- ══════════════ COMPACT GRID: remaining 5 ══════════════ -->
     <div class="compact-section">
       <p class="section-label">More projects</p>
       <div class="grid" id="grid" aria-label="More projects">
@@ -481,18 +472,6 @@
       </div>
       <div class="tags" style="margin-top:10px"><span class="tag">Go</span><span class="tag">Goroutines</span><span class="tag">Channels</span></div>
     </article>
-    <article class="mini" aria-label="Stat Arb Backtester project">
-      <h3>Stat Arb Backtester</h3>
-      <div class="mini-desc">Z-score engine for pairs trading. 19 test cases verify no lookahead bias, correct signals, and bounded position sizes.</div>
-      <div class="mini-meta">
-        <div class="mini-links">
-          <a href="https://github.com/ziaulalam1/stat-arb-backtester" aria-label="Stat Arb Backtester GitHub repository">GitHub</a>
-          
-        </div>
-        <span class="metric">0 lookahead</span>
-      </div>
-      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">NumPy</span></div>
-    </article>
     <article class="mini" aria-label="Security Risk Reporter project">
       <h3>Security Risk Reporter</h3>
       <div class="mini-desc">Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.</div>
@@ -505,65 +484,29 @@
       </div>
       <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">pandas</span><span class="tag">matplotlib</span></div>
     </article>
-    <article class="mini" aria-label="Integration Onboarding Monitor project">
-      <h3>Integration Onboarding Monitor</h3>
-      <div class="mini-desc">API that acts as a schema gate. 100% of malformed payloads are rejected before they reach the database.</div>
+    <article class="mini" aria-label="Distributed Systems Health Monitor project">
+      <h3>Distributed Systems Health Monitor</h3>
+      <div class="mini-desc">Circuit breaker and fault injection across a six-service dependency graph. When the breaker is OPEN, zero calls are forwarded; every message is either delivered or explicitly rejected.</div>
       <div class="mini-meta">
         <div class="mini-links">
-          <a href="https://github.com/ziaulalam1/integration-onboarding-monitor" aria-label="Integration Onboarding Monitor GitHub repository">GitHub</a>
           
+          <a class="demo" href="monitor/">Demo</a>
         </div>
-        <span class="metric">67.3 req/s</span>
+        <span class="metric">0 calls forwarded when OPEN | 6 services</span>
       </div>
-      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">pytest</span></div>
+      <div class="tags" style="margin-top:10px"><span class="tag">JavaScript</span><span class="tag">Canvas API</span><span class="tag">Circuit Breaker</span></div>
     </article>
-    <article class="mini" aria-label="Centerbridge Webhook Relay project">
-      <h3>Centerbridge Webhook Relay</h3>
-      <div class="mini-desc">Append-only audit log using SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.</div>
+    <article class="mini" aria-label="Pre-Trade Analytics Dashboard project">
+      <h3>Pre-Trade Analytics Dashboard</h3>
+      <div class="mini-desc">Black-Scholes pricing engine with an option chain grid and scenario analysis. Put-call parity holds to 1e-10 across every input combination tested, not only textbook examples.</div>
       <div class="mini-meta">
         <div class="mini-links">
-          <a href="https://github.com/ziaulalam1/Centerbridge" aria-label="Centerbridge Webhook Relay GitHub repository">GitHub</a>
           
+          <a class="demo" href="dashboard/">Demo</a>
         </div>
-        <span class="metric">200+ RPS</span>
+        <span class="metric">put-call parity to 1e-10 | p50=0.004ms</span>
       </div>
-      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">PostgreSQL</span></div>
-    </article>
-    <article class="mini" aria-label="Recon-Toolkit project">
-      <h3>Recon-Toolkit</h3>
-      <div class="mini-desc">CSV reconciliation CLI for fintech ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails.</div>
-      <div class="mini-meta">
-        <div class="mini-links">
-          <a href="https://github.com/ziaulalam1/recon-toolkit" aria-label="Recon-Toolkit GitHub repository">GitHub</a>
-          
-        </div>
-        <span class="metric">full audit trail</span>
-      </div>
-      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">CLI</span><span class="tag">pandas</span></div>
-    </article>
-    <article class="mini" aria-label="Redis from Scratch project">
-      <h3>Redis from Scratch</h3>
-      <div class="mini-desc">TCP server implementing the Redis wire protocol (RESP) in Rust. Nine stages: RESP parser, core commands, TTL expiry, concurrent clients (tokio), RDB persistence, replication, and Streams. Each stage has a named invariant and passes cargo test before moving on.</div>
-      <div class="mini-meta">
-        <div class="mini-links">
-          <a href="https://github.com/ziaulalam1/redis-from-scratch" aria-label="Redis from Scratch GitHub repository">GitHub</a>
-          
-        </div>
-        <span class="metric">9 stages | 1 invariant per stage</span>
-      </div>
-      <div class="tags" style="margin-top:10px"><span class="tag">Rust</span><span class="tag">Systems</span><span class="tag">Redis</span><span class="tag">TCP</span></div>
-    </article>
-    <article class="mini" aria-label="Career Ops MCP project">
-      <h3>Career Ops MCP</h3>
-      <div class="mini-desc">MCP server exposing a personal job-search workflow as queryable tools. Three Phase-1 tools: list open applications (flags overdue follow-ups), get full record for one company, list pending outreach emails. Rejected and archived rows are never surfaced — this is the named invariant.</div>
-      <div class="mini-meta">
-        <div class="mini-links">
-          <a href="https://github.com/ziaulalam1/career-ops-mcp" aria-label="Career Ops MCP GitHub repository">GitHub</a>
-          
-        </div>
-        <span class="metric">3 tools | 1 invariant</span>
-      </div>
-      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">MCP</span><span class="tag">FastMCP</span><span class="tag">Automation</span></div>
+      <div class="tags" style="margin-top:10px"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Black-Scholes</span><span class="tag">Vite</span></div>
     </article>
     </div>
     </div>

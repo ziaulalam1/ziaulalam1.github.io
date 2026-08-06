@@ -1,6 +1,6 @@
 {
   "stats": {
-    "projects": 15,
+    "projects": 11,
     "tests": "87+",
     "languages": 5,
     "liveDemos": 4
@@ -14,16 +14,11 @@
       "demo": "orderbook/",
       "metric": "1.1M orders/sec | 5/5 invariants",
       "invariant": "price-time priority on every match, no order executes at worse price than its limit",
-      "tags": ["JavaScript", "Canvas API", "Market Microstructure"]
-    },
-    {
-      "name": "Distributed Systems Health Monitor",
-      "slug": "distributed-systems-monitor",
-      "github": "https://github.com/ziaulalam1/distributed-systems-monitor",
-      "demo": "monitor/",
-      "metric": "0 calls forwarded when OPEN | 6 services",
-      "invariant": "circuit breaker never allows calls when OPEN, every message delivered or explicitly rejected",
-      "tags": ["JavaScript", "Canvas API", "Circuit Breaker"]
+      "tags": [
+        "JavaScript",
+        "Canvas API",
+        "Market Microstructure"
+      ]
     },
     {
       "name": "Raft Consensus KV Store",
@@ -32,16 +27,12 @@
       "demo": null,
       "metric": "~87,000 ops/sec | 5/5 invariants | race-clean",
       "invariant": "at most one leader per term, committed entries present in every future leader's log",
-      "tags": ["Go", "Raft", "Consensus", "Distributed Systems"]
-    },
-    {
-      "name": "Pre-Trade Analytics Dashboard",
-      "slug": "pre-trade-dashboard",
-      "github": "https://github.com/ziaulalam1/pre-trade-dashboard",
-      "demo": "dashboard/",
-      "metric": "put-call parity to 1e-10 | p50=0.004ms",
-      "invariant": "put-call parity holds for every input combination, not just textbook examples",
-      "tags": ["TypeScript", "React", "Black-Scholes", "Vite"]
+      "tags": [
+        "Go",
+        "Raft",
+        "Consensus",
+        "Distributed Systems"
+      ]
     },
     {
       "name": "Delivery Order Router",
@@ -50,7 +41,12 @@
       "demo": null,
       "metric": "1,211 req/s | 0 dropped | 0 double-assigned",
       "invariant": "every order assigned exactly once, no dasher over capacity",
-      "tags": ["Python", "FastAPI", "SQLite", "pytest"]
+      "tags": [
+        "Python",
+        "FastAPI",
+        "SQLite",
+        "pytest"
+      ]
     },
     {
       "name": "Distributed Generation Portfolio Monitor",
@@ -59,14 +55,52 @@
       "demo": null,
       "metric": "Recall=1.0 | FPR=0.003 | naive catches 0/3",
       "invariant": "segmented thresholds detect faults that uniform thresholds are completely blind to",
-      "tags": ["Python", "pandas", "NumPy", "matplotlib"]
+      "tags": [
+        "Python",
+        "pandas",
+        "NumPy",
+        "matplotlib"
+      ]
+    },
+    {
+      "name": "Integration Onboarding Monitor",
+      "desc": "API that acts as a schema gate. 100% of malformed payloads are rejected before they reach the database.",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "pytest"
+      ],
+      "metric": "67.3 req/s",
+      "github": "https://github.com/ziaulalam1/integration-onboarding-monitor",
+      "demo": null,
+      "slug": "integration-onboarding-monitor",
+      "invariant": "no malformed payload reaches the database, and every rejection is logged with its customer_id"
+    },
+    {
+      "name": "Webhook Relay & Event Inbox",
+      "desc": "Append-only audit log using SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.",
+      "tags": [
+        "Python",
+        "FastAPI",
+        "PostgreSQL"
+      ],
+      "metric": "idempotent | append-only audit log | dead-letters at 10 attempts",
+      "github": "https://github.com/ziaulalam1/Centerbridge",
+      "demo": null,
+      "slug": "Centerbridge",
+      "invariant": "every event is persisted before the 202 returns, and a repeated idempotency key never creates a second row"
     }
   ],
   "more": [
     {
       "name": "Legal Document Classifier",
       "desc": "Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review.",
-      "tags": ["Python", "NLP", "scikit-learn", "Validation"],
+      "tags": [
+        "Python",
+        "NLP",
+        "scikit-learn",
+        "Validation"
+      ],
       "metric": "5 invariants | 88% clear",
       "github": "https://github.com/ziaulalam1/legalai",
       "demo": "https://huggingface.co/spaces/ziaulalam1/ldc"
@@ -74,66 +108,49 @@
     {
       "name": "Go Ride Request Simulator",
       "desc": "State machine simulator of concurrent ride requests. Goroutine and channel implementations strictly order states when there are multiple concurrent accesses.",
-      "tags": ["Go", "Goroutines", "Channels"],
+      "tags": [
+        "Go",
+        "Goroutines",
+        "Channels"
+      ],
       "metric": "3/3 invariants",
       "github": "https://github.com/ziaulalam1/go-ride-simulator",
       "demo": null
     },
     {
-      "name": "Stat Arb Backtester",
-      "desc": "Z-score engine for pairs trading. 19 test cases verify no lookahead bias, correct signals, and bounded position sizes.",
-      "tags": ["Python", "pandas", "NumPy"],
-      "metric": "0 lookahead",
-      "github": "https://github.com/ziaulalam1/stat-arb-backtester",
-      "demo": null
-    },
-    {
       "name": "Security Risk Reporter",
       "desc": "Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.",
-      "tags": ["Python", "pandas", "matplotlib"],
+      "tags": [
+        "Python",
+        "pandas",
+        "matplotlib"
+      ],
       "metric": "106ms pipeline",
       "github": "https://github.com/ziaulalam1/security-risk-reporter",
       "demo": null
     },
     {
-      "name": "Integration Onboarding Monitor",
-      "desc": "API that acts as a schema gate. 100% of malformed payloads are rejected before they reach the database.",
-      "tags": ["Python", "FastAPI", "pytest"],
-      "metric": "67.3 req/s",
-      "github": "https://github.com/ziaulalam1/integration-onboarding-monitor",
-      "demo": null
+      "name": "Distributed Systems Health Monitor",
+      "demo": "monitor/",
+      "metric": "0 calls forwarded when OPEN | 6 services",
+      "tags": [
+        "JavaScript",
+        "Canvas API",
+        "Circuit Breaker"
+      ],
+      "desc": "Circuit breaker and fault injection across a six-service dependency graph. When the breaker is OPEN, zero calls are forwarded; every message is either delivered or explicitly rejected."
     },
     {
-      "name": "Centerbridge Webhook Relay",
-      "desc": "Append-only audit log using SHA-256 checksums. Asynchronous delivery of webhook payloads with retry functionality and k6 spike testing.",
-      "tags": ["Python", "FastAPI", "PostgreSQL"],
-      "metric": "200+ RPS",
-      "github": "https://github.com/ziaulalam1/Centerbridge",
-      "demo": null
-    },
-    {
-      "name": "Recon-Toolkit",
-      "desc": "CSV reconciliation CLI for fintech ops teams. Primary key matching, rule-based exception labeling, manager-friendly Markdown reports, and full audit trails.",
-      "tags": ["Python", "CLI", "pandas"],
-      "metric": "full audit trail",
-      "github": "https://github.com/ziaulalam1/recon-toolkit",
-      "demo": null
-    },
-    {
-      "name": "Redis from Scratch",
-      "desc": "TCP server implementing the Redis wire protocol (RESP) in Rust. Nine stages: RESP parser, core commands, TTL expiry, concurrent clients (tokio), RDB persistence, replication, and Streams. Each stage has a named invariant and passes cargo test before moving on.",
-      "tags": ["Rust", "Systems", "Redis", "TCP"],
-      "metric": "9 stages | 1 invariant per stage",
-      "github": "https://github.com/ziaulalam1/redis-from-scratch",
-      "demo": null
-    },
-    {
-      "name": "Career Ops MCP",
-      "desc": "MCP server exposing a personal job-search workflow as queryable tools. Three Phase-1 tools: list open applications (flags overdue follow-ups), get full record for one company, list pending outreach emails. Rejected and archived rows are never surfaced — this is the named invariant.",
-      "tags": ["Python", "MCP", "FastMCP", "Automation"],
-      "metric": "3 tools | 1 invariant",
-      "github": "https://github.com/ziaulalam1/career-ops-mcp",
-      "demo": null
+      "name": "Pre-Trade Analytics Dashboard",
+      "demo": "dashboard/",
+      "metric": "put-call parity to 1e-10 | p50=0.004ms",
+      "tags": [
+        "TypeScript",
+        "React",
+        "Black-Scholes",
+        "Vite"
+      ],
+      "desc": "Black-Scholes pricing engine with an option chain grid and scenario analysis. Put-call parity holds to 1e-10 across every input combination tested, not only textbook examples."
     }
   ]
 }

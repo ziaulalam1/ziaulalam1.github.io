@@ -27,6 +27,9 @@ function renderMini(p) {
   const demoLink = p.demo
     ? `<a class="demo" href="${p.demo}">Demo</a>`
     : '';
+  const ghLink = p.github
+    ? `<a href="${p.github}" aria-label="${p.name} GitHub repository">GitHub</a>`
+    : '';
   const tags = p.tags.map(t => `<span class="tag">${t}</span>`).join('');
   return `
     <article class="mini" aria-label="${p.name} project">
@@ -34,7 +37,7 @@ function renderMini(p) {
       <div class="mini-desc">${p.desc}</div>
       <div class="mini-meta">
         <div class="mini-links">
-          <a href="${p.github}" aria-label="${p.name} GitHub repository">GitHub</a>
+          ${ghLink}
           ${demoLink}
         </div>
         <span class="metric">${p.metric}</span>
