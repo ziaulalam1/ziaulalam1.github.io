@@ -214,7 +214,7 @@
     </header>
 
     <div class="stats">
-      <div class="stat"><span class="stat-number">11</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number" id="stat-projects">11</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">4</span><span class="stat-label">Live demos</span></div>
@@ -522,6 +522,11 @@
           <div class="tags" style="margin-top:10px">${tags}</div>
         </div>`;
     });
+
+    // Project count is derived from what is actually on the page, so adding a
+    // featured card or a `more` entry updates it with no manual edit.
+    document.getElementById("stat-projects").textContent =
+      document.querySelectorAll(".deep").length + more.length;
   </script>
 </body>
 </html>

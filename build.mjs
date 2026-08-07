@@ -52,10 +52,13 @@ function buildGrid() {
 }
 
 /** Inject stats into the stats section */
+// Project count is DERIVED from the arrays — never stored, so it cannot drift.
+const projectCount = data.featured.length + data.more.length;
+
 function buildStats() {
   const s = data.stats;
   return `
-      <div class="stat"><span class="stat-number">${s.projects}</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number" id="stat-projects">${projectCount}</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">${s.tests}</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">${s.languages}</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">${s.liveDemos}</span><span class="stat-label">Live demos</span></div>`.trimStart();
@@ -105,4 +108,4 @@ for (const file of ['robots.txt', 'sitemap.xml', 'favicon.ico']) {
   } catch {}
 }
 
-console.log(`Built dist/index.html — ${data.stats.projects} projects, ${data.stats.liveDemos} live demos`);
+console.log(`Built dist/index.html — ${projectCount} projects, ${data.stats.liveDemos} live demos`);
