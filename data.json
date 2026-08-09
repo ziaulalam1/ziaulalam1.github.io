@@ -39,7 +39,7 @@
       "github": "https://github.com/ziaulalam1/delivery-order-router",
       "demo": null,
       "metric": "1,211 req/s | 0 dropped | 0 double-assigned",
-      "invariant": "every order assigned exactly once, no dasher over capacity",
+      "invariant": "every order assigned exactly once, no driver over capacity",
       "tags": [
         "Python",
         "FastAPI",

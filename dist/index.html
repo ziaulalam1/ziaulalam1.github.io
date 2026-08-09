@@ -312,17 +312,17 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The problem</div>
-          <p>If an order is dropped during a delivery process, that is significantly worse than if an order took longer to complete. In most implementations, the routing algorithm does not check whether the dasher currently has capacity before assigning an order. Under heavy concurrent loads, some orders will either be double-assigned or simply drop off entirely. Since there are no obvious indicators of failure, such as exceptions being thrown, dropping off may go unnoticed.</p>
+          <p>If an order is dropped during a delivery process, that is significantly worse than if an order took longer to complete. In most implementations, the routing algorithm does not check whether the driver currently has capacity before assigning an order. Under heavy concurrent loads, some orders will either be double-assigned or simply drop off entirely. Since there are no obvious indicators of failure, such as exceptions being thrown, dropping off may go unnoticed.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>Before writing any routing logic, I locked in two invariants. First, every order must be assigned exactly once. Second, no dasher can ever exceed capacity. The 6-test suite executes these checks immediately after every assignment round. The 1,000-request benchmark ran zero violations. The 1,211 req/s came from getting the data model right, not from optimizing for speed.</p>
+          <p>Before writing any routing logic, I locked in two invariants. First, every order must be assigned exactly once. Second, no driver can ever exceed capacity. The 6-test suite executes these checks immediately after every assignment round. The 1,000-request benchmark ran zero violations. The 1,211 req/s came from getting the data model right, not from optimizing for speed.</p>
         </div>
 
         <div class="deep-section">
           <div class="deep-section-label">What I'd change</div>
-          <p>Right now the router picks the least-loaded dasher, ignoring location entirely. A better version would factor in dasher distance and delivery radius to minimize total cost. The two invariants stay the same -- every order assigned exactly once, no dasher over capacity -- but the assignment quality improves.</p>
+          <p>Right now the router picks the least-loaded driver, ignoring location entirely. A better version would factor in driver distance and delivery radius to minimize total cost. The two invariants stay the same -- every order assigned exactly once, no driver over capacity -- but the assignment quality improves.</p>
         </div>
 
         <div class="deep-meta">
@@ -334,7 +334,7 @@
           </div>
           <span class="metric">1,211 req/s | 0 dropped | 0 double-assigned</span>
         </div>
-        <div class="invariant">every order assigned exactly once, no dasher over capacity</div>
+        <div class="invariant">every order assigned exactly once, no driver over capacity</div>
         <div class="deep-img">
           <img src="img/delivery-router.png" alt="Delivery Order Router: latency distribution under 1000 concurrent requests" loading="lazy">
         </div>
