@@ -246,7 +246,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I created a matching engine that can be proven to maintain price-time priority by using five invariant tests, and also by using a real-time view of the three things a trader typically examines: Level II depth, the depth chart, and the trade tape. By pressing the Market Impact button, a 500 quantity market order is fired into the book to show how a large order sweeps through price levels, consumes liquidity and moves the price. This is why we see slippage on trades.</p>
+          <p>I created a matching engine that can be proven to maintain price-time priority by using 15 invariant tests, and also by using a real-time view of the three things a trader typically examines: Level II depth, the depth chart, and the trade tape. By pressing the Market Impact button, a 500 quantity market order is fired into the book to show how a large order sweeps through price levels, consumes liquidity and moves the price. This is why we see slippage on trades.</p>
         </div>
 
         <div class="deep-section">
@@ -260,7 +260,7 @@
             <span class="tag">Canvas API</span>
             <span class="tag">Market Microstructure</span>
           </div>
-          <span class="metric">1.1M orders/sec | 5/5 invariants</span>
+          <span class="metric">1.1M orders/sec | 15/15 invariants</span>
         </div>
         <div class="invariant">price-time priority on every match, no order executes at worse price than its limit</div>
       </div>
@@ -296,7 +296,7 @@
             <span class="tag">Consensus</span>
             <span class="tag">Distributed Systems</span>
           </div>
-          <span class="metric">~87,000 ops/sec | 5/5 invariants | race-clean</span>
+          <span class="metric">~87,000 ops/sec serial writes | 7/7 invariants | race-clean</span>
         </div>
         <div class="invariant">at most one leader per term, committed entries present in every future leader's log</div>
       </div>
@@ -394,7 +394,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I made the schema gate the single enforcement point. Every incoming payload is validated before any database write, and nothing bypasses it. Invalid payloads are rejected with a structured error response and logged as JSON per customer, so every rejection is traceable to the customer that sent it. Fifteen tests cover the invariants that matter: malformed payloads never reach the database, well-formed payloads pass through unmodified, one customer&rsquo;s bad payload cannot affect another&rsquo;s, and every rejection produces a log entry carrying its customer_id. The benchmark ran 1,000 requests across 20 customers at 67.3 req/s, p50 14.654 ms and p95 18.471 ms.</p>
+          <p>I made the schema gate the single enforcement point. Every incoming payload is validated before any database write, and nothing bypasses it. Invalid payloads are rejected with a structured error response and logged as JSON per customer, so every rejection is traceable to the customer that sent it. Fifteen tests cover the invariants that matter: malformed payloads never reach the database, well-formed payloads pass through unmodified, one customer&rsquo;s bad payload cannot affect another&rsquo;s, and every rejection produces a log entry carrying its customer_id. The benchmark ran 1,000 requests across 20 customers in a serial in-process loop: 67.3 req/s, p50 14.654 ms and p95 18.471 ms. That rate is simply 1/latency for sequential calls, so it is a correctness harness, not a concurrency or throughput benchmark.</p>
         </div>
 
         <div class="deep-meta">
@@ -403,7 +403,7 @@
             <span class="tag">FastAPI</span>
             <span class="tag">pytest</span>
           </div>
-          <span class="metric">67.3 req/s | p95 18.471ms | 15 tests</span>
+          <span class="metric">67.3 req/s serial | p95 18.471ms | 15 tests</span>
         </div>
         <div class="invariant">no malformed payload reaches the database, and every rejection is logged with its customer_id</div>
         <div class="deep-img">
