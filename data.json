@@ -4,14 +4,14 @@
     "languages": 5,
     "liveDemos": 4
   },
-  "lastUpdated": "2026-06-23",
+  "lastUpdated": "2026-09-22",
   "featured": [
     {
       "name": "Order Book Engine",
       "slug": "order-book-engine",
       "github": "https://github.com/ziaulalam1/order-book-engine",
       "demo": "orderbook/",
-      "metric": "1.1M orders/sec | 5/5 invariants",
+      "metric": "1.1M orders/sec | 15/15 invariants",
       "invariant": "price-time priority on every match, no order executes at worse price than its limit",
       "tags": [
         "JavaScript",
@@ -24,7 +24,7 @@
       "slug": "raft-kv",
       "github": "https://github.com/ziaulalam1/raft-kv",
       "demo": null,
-      "metric": "~87,000 ops/sec | 5/5 invariants | race-clean",
+      "metric": "~87,000 ops/sec serial writes | 7/7 invariants | race-clean",
       "invariant": "at most one leader per term, committed entries present in every future leader's log",
       "tags": [
         "Go",
@@ -69,7 +69,7 @@
         "FastAPI",
         "pytest"
       ],
-      "metric": "67.3 req/s",
+      "metric": "p95 18.471 ms serial | 15 tests",
       "github": "https://github.com/ziaulalam1/integration-onboarding-monitor",
       "demo": null,
       "slug": "integration-onboarding-monitor",
@@ -83,7 +83,7 @@
         "FastAPI",
         "PostgreSQL"
       ],
-      "metric": "idempotent | append-only audit log | dead-letters at 10 attempts",
+      "metric": "k6: 2,352 req/s at 50 VUs | 0% errors | p95 37 ms",
       "github": "https://github.com/ziaulalam1/Centerbridge",
       "demo": null,
       "slug": "Centerbridge",
@@ -93,7 +93,7 @@
   "more": [
     {
       "name": "Legal Document Classifier",
-      "desc": "Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review.",
+      "desc": "Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review and 3% are held as low-confidence uncertain.",
       "tags": [
         "Python",
         "NLP",
@@ -118,7 +118,7 @@
     },
     {
       "name": "Security Risk Reporter",
-      "desc": "Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.",
+      "desc": "Scoring engine for an 800-event data processing pipeline. Six pytest invariants: counts and sites preserved with no silent drops, per-type counts reconcile to totals, scores bounded [0,1], trend values valid, and intrusion-heavy sites outscore low-severity ones.",
       "tags": [
         "Python",
         "pandas",
@@ -150,6 +150,20 @@
         "Vite"
       ],
       "desc": "Black-Scholes pricing engine with an option chain grid and scenario analysis. Put-call parity holds to 1e-10 across every input combination tested, not only textbook examples."
+    },
+    {
+      "name": "Stat-Arb Signal Backtester",
+      "desc": "Pairs-trading backtester that reruns an Engle-Granger cointegration test on every walk-forward window (train one year, trade one quarter) instead of screening once up front. 75 of 76 pair-windows failed the gate and produced zero trades; the stability report says so instead of averaging it away.",
+      "tags": [
+        "Python",
+        "statsmodels",
+        "pandas",
+        "Cointegration"
+      ],
+      "metric": "19 automated checks | 4 pairs | 76 walk-forward windows",
+      "github": "https://github.com/ziaulalam1/stat-arb-backtester",
+      "demo": null,
+      "slug": "stat-arb-backtester"
     }
   ]
 }

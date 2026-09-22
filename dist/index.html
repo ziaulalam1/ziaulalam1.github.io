@@ -205,7 +205,7 @@
 
     <header>
       <h1>Ziaul Alam</h1>
-      <p class="bio">Software developer building backend systems, data pipelines, and machine learning tools. B.S. Computer Science at LIU Brooklyn, graduating May 2026. Based in NYC.</p>
+      <p class="bio">Software developer building backend systems, data pipelines, and machine learning tools. B.S. Computer Science, LIU Brooklyn, graduated May 2026. Based in NYC.</p>
       <div class="header-links">
         <a href="https://github.com/ziaulalam1" aria-label="GitHub profile">GitHub</a>
         <a href="https://www.linkedin.com/in/ziaul-alam-6000a9278/" aria-label="LinkedIn profile">LinkedIn</a>
@@ -214,14 +214,14 @@
     </header>
 
     <div class="stats">
-      <div class="stat"><span class="stat-number" id="stat-projects">11</span><span class="stat-label">Projects</span></div>
+      <div class="stat"><span class="stat-number" id="stat-projects">12</span><span class="stat-label">Projects</span></div>
       <div class="stat"><span class="stat-number">87+</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">5</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">4</span><span class="stat-label">Live demos</span></div>
     </div>
 
     <div class="philosophy">
-      <p>Each of my projects has shipped with <strong>invariant tests</strong> and a <strong>benchmark</strong>. An invariant test states what properties or rules should always hold for a specific piece of logic; the benchmark verifies those same rules are being upheld when there is some level of load applied. Anyone can write code that compiles, but verifying that it actually holds up under load is a harder problem.</p>
+      <p>Each of my projects has shipped with <strong>invariant tests</strong>, and most with a measured <strong>benchmark</strong>. An invariant test states what properties or rules should always hold for a specific piece of logic; where a project carries a benchmark, it verifies those same rules are being upheld while load is applied. Anyone can write code that compiles, but verifying that it actually holds up is a harder problem.</p>
     </div>
 
     <!-- ══════════════ FEATURED: deep dives ══════════════ -->
@@ -281,7 +281,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>Before implementing a single line of replication logic, I wrote five Raft safety property tests: Election Safety, Log Matching, Leader Completeness, Quorum (a minority partition cannot elect a leader), and Convergence after a partition heals. Each test runs with the Go race detector, and passing via go test -race verifies that the concurrent code is safe under Go's memory model. My in-process test cluster captures communications at the transport level, allowing me to simulate network partitions and drop specific RPCs without worrying about port allocation. Because the HTTP transport and test transport share the same interface, the same Raft node codebase is used for both.</p>
+          <p>Before implementing a single line of replication logic, I wrote tests for the five core Raft safety properties: Election Safety, Log Matching, Leader Completeness, Quorum (a minority partition cannot elect a leader), and Convergence after a partition heals. Two more invariant tests followed during implementation, covering conflict-term fast catch-up and PreVote term stability, for seven in total. Each test runs with the Go race detector, and passing via go test -race verifies that the concurrent code is safe under Go's memory model. My in-process test cluster captures communications at the transport level, allowing me to simulate network partitions and drop specific RPCs without worrying about port allocation. Because the HTTP transport and test transport share the same interface, the same Raft node codebase is used for both.</p>
         </div>
 
         <div class="deep-section">
@@ -394,7 +394,7 @@
 
         <div class="deep-section">
           <div class="deep-section-label">The decision</div>
-          <p>I made the schema gate the single enforcement point. Every incoming payload is validated before any database write, and nothing bypasses it. Invalid payloads are rejected with a structured error response and logged as JSON per customer, so every rejection is traceable to the customer that sent it. Fifteen tests cover the invariants that matter: malformed payloads never reach the database, well-formed payloads pass through unmodified, one customer&rsquo;s bad payload cannot affect another&rsquo;s, and every rejection produces a log entry carrying its customer_id. The benchmark ran 1,000 requests across 20 customers in a serial in-process loop: 67.3 req/s, p50 14.654 ms and p95 18.471 ms. That rate is simply 1/latency for sequential calls, so it is a correctness harness, not a concurrency or throughput benchmark.</p>
+          <p>I made the schema gate the single enforcement point. Every incoming payload is validated before any database write, and nothing bypasses it. Invalid payloads are rejected with a structured error response and logged as JSON per customer, so every rejection is traceable to the customer that sent it. Fifteen tests cover the invariants that matter: malformed payloads never reach the database, well-formed payloads pass through unmodified, one customer&rsquo;s bad payload cannot affect another&rsquo;s, and every rejection produces a log entry carrying its customer_id. The harness ran 1,000 requests across 20 customers in a serial in-process loop: p50 14.654 ms and p95 18.471 ms per request. Serial timing is simply 1/latency, so this is a correctness harness, not a concurrency or throughput benchmark.</p>
         </div>
 
         <div class="deep-meta">
@@ -403,7 +403,7 @@
             <span class="tag">FastAPI</span>
             <span class="tag">pytest</span>
           </div>
-          <span class="metric">67.3 req/s serial | p95 18.471ms | 15 tests</span>
+          <span class="metric">p95 18.471 ms serial | 15 tests</span>
         </div>
         <div class="invariant">no malformed payload reaches the database, and every rejection is logged with its customer_id</div>
         <div class="deep-img">
@@ -437,7 +437,7 @@
             <span class="tag">PostgreSQL</span>
             <span class="tag">k6</span>
           </div>
-          <span class="metric">idempotent | append-only audit log | dead-letters at 10 attempts</span>
+          <span class="metric">k6: 2,352 req/s at 50 VUs | 0% errors | p95 37 ms</span>
         </div>
         <div class="invariant">every event is persisted before the 202 returns, and a repeated idempotency key never creates a second row</div>
       </div>
@@ -450,7 +450,7 @@
       <div class="grid" id="grid" aria-label="More projects">
     <article class="mini" aria-label="Legal Document Classifier project">
       <h3>Legal Document Classifier</h3>
-      <div class="mini-desc">Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review.</div>
+      <div class="mini-desc">Classifies legal documents into five categories with a validation layer that checks confidence, class ambiguity, perturbation stability, and input quality. 88% of predictions pass all 5 invariant checks; 9% are flagged for review and 3% are held as low-confidence uncertain.</div>
       <div class="mini-meta">
         <div class="mini-links">
           <a href="https://github.com/ziaulalam1/legalai" aria-label="Legal Document Classifier GitHub repository">GitHub</a>
@@ -474,7 +474,7 @@
     </article>
     <article class="mini" aria-label="Security Risk Reporter project">
       <h3>Security Risk Reporter</h3>
-      <div class="mini-desc">Scoring engine for an 800-event data processing pipeline. Six invariants: counts preserved, scores bounded [0,1], all silent drops prevented.</div>
+      <div class="mini-desc">Scoring engine for an 800-event data processing pipeline. Six pytest invariants: counts and sites preserved with no silent drops, per-type counts reconcile to totals, scores bounded [0,1], trend values valid, and intrusion-heavy sites outscore low-severity ones.</div>
       <div class="mini-meta">
         <div class="mini-links">
           <a href="https://github.com/ziaulalam1/security-risk-reporter" aria-label="Security Risk Reporter GitHub repository">GitHub</a>
@@ -508,13 +508,25 @@
       </div>
       <div class="tags" style="margin-top:10px"><span class="tag">TypeScript</span><span class="tag">React</span><span class="tag">Black-Scholes</span><span class="tag">Vite</span></div>
     </article>
+    <article class="mini" aria-label="Stat-Arb Signal Backtester project">
+      <h3>Stat-Arb Signal Backtester</h3>
+      <div class="mini-desc">Pairs-trading backtester that reruns an Engle-Granger cointegration test on every walk-forward window (train one year, trade one quarter) instead of screening once up front. 75 of 76 pair-windows failed the gate and produced zero trades; the stability report says so instead of averaging it away.</div>
+      <div class="mini-meta">
+        <div class="mini-links">
+          <a href="https://github.com/ziaulalam1/stat-arb-backtester" aria-label="Stat-Arb Signal Backtester GitHub repository">GitHub</a>
+          
+        </div>
+        <span class="metric">19 automated checks | 4 pairs | 76 walk-forward windows</span>
+      </div>
+      <div class="tags" style="margin-top:10px"><span class="tag">Python</span><span class="tag">statsmodels</span><span class="tag">pandas</span><span class="tag">Cointegration</span></div>
+    </article>
     </div>
     </div>
 
     </main>
 
     <footer>
-      <div class="wrap" style="padding:0;">Ziaul Alam &middot; NYC &middot; Last updated June 2026</div>
+      <div class="wrap" style="padding:0;">Ziaul Alam &middot; NYC &middot; Last updated September 2026</div>
     </footer>
 
   </div>
