@@ -59,7 +59,6 @@ function buildStats() {
   const s = data.stats;
   return `
       <div class="stat"><span class="stat-number" id="stat-projects">${projectCount}</span><span class="stat-label">Projects</span></div>
-      <div class="stat"><span class="stat-number">${s.tests}</span><span class="stat-label">Tests passing</span></div>
       <div class="stat"><span class="stat-number">${s.languages}</span><span class="stat-label">Languages</span></div>
       <div class="stat"><span class="stat-number">${s.liveDemos}</span><span class="stat-label">Live demos</span></div>`.trimStart();
 }
